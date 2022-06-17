@@ -12,7 +12,9 @@ public class Main {
         LinkedHashMapCustom<Integer, Integer> map = new LinkedHashMapCustom<>();
         map.put(58, 78); map.put(8, 8); 
         map.put(99, 48); map.put(58, 58); map.put(18, 178);
-        System.out.println(map.continsKey(68));
+//        System.out.println(map.containsKey(68));
+        System.out.println(map.containsValue(58));
+
         
     }
 }

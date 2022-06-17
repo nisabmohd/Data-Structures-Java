@@ -85,9 +85,24 @@ public class LinkedHashMapCustom<K, V> {
         return null;
 
     }
-    public boolean continsKey(K key){
-        if(get(key)==null) return false;
+
+    public boolean containsKey(K key) {
+        if (get(key) == null) {
+            return false;
+        }
         return true;
+    }
+
+    public boolean containsValue(V val) {
+        Node temp = root;
+        while (temp != null) {
+            if (temp.val == val) {
+                return true;
+            }
+            temp = temp.after;
+        }
+        return false;
+
     }
 
 }
