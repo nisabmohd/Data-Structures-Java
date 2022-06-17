@@ -106,3 +106,7 @@ public class LinkedHashMapCustom<K, V> {
     }
 
 }
+
+
+// check out the structure of LinkedHashMap image to understand more better
+//https://lh4.googleusercontent.com/5M89iub9wNrKR-jmctcmLtGIHiy0lbqL5Oz18AvQyuHdFXGDC4qKgCVZO73WPujj3qqquh_WXlKp7zem4vCfEynJzcN-t0a_wa_mSxDO62G2C-YgEvUhQRBdXdWvpBIhDDM0BxE
