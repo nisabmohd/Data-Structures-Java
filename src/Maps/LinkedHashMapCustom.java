@@ -37,12 +37,22 @@ public class LinkedHashMapCustom<K, V> {
             bucket[hash] = t;
         } else {
             Entry temp = bucket[hash];
+            if (temp.next == null) {
+                if (temp.key.equals(key)) {
+                    temp.val = val;
+                    return;
+                }
+            }
             while (temp.next != null) {
-                if (temp.key == key) {
+                if (temp.key.equals(key)) {
                     temp.val = val;
                     return;
                 }
                 temp = temp.next;
+            }
+            if (temp.key.equals(key)) {
+                temp.val = val;
+                return;
             }
             temp.next = t;
             t.before = previous;
@@ -63,7 +73,7 @@ public class LinkedHashMapCustom<K, V> {
         }
         Entry temp = bucket[hash];
         while (temp != null) {
-            if (temp.key .equals(key)) {
+            if (temp.key.equals(key)) {
                 return (V) temp.val;
             }
             temp = temp.next;
