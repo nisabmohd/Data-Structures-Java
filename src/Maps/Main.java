@@ -3,26 +3,26 @@ package Maps;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-//        TreeMapCustom<String, Integer> map = new TreeMapCustom<>();
-//        map.put("t", 70);
-//        map.put("b", 150);
-//        map.put("z", 70);
-//        map.put("d", 150);
-//        map.display();
-        LinkedHashMapCustom<Integer, Integer> map = new LinkedHashMapCustom<>();
-        map.put(58, 78);
-        map.put(8, 8);
-        map.put(99, 48);
-        map.put(58, 58);
-        map.put(18, 178);
-        map.remove(18);
-        map.remove(58);
-        map.remove(99);
-//        map.remove(8);
-//        System.out.println(map.containsKey(68));
-//        System.out.println(map.containsValue(58));
+//        LinkedHashMapCustom<String, Integer> map = new LinkedHashMapCustom<>();
+//        map.put("nisab", 599);
+//        map.put("koni", 545);
+//        map.put("bari", 598);
+//        map.put("kunal", 700);
 //        map.clear();
-//        System.out.println(map.getOrDefault(99, 46));
+//        System.out.println(map.getOrDefault("hello", 46));
+//        System.out.println(map.containsKey("nisab"));
+
+//        System.out.println(map);
+        HashMapCustom<Integer, String> map = new HashMapCustom<>();
+        map.put(781, "hkjfd");
+        map.put(71, "fgfg");
+        map.put(99, "Nisab");
+        map.put(79, "jdgdsd");
+        map.put(99, "Nisab mohd");
+        map.put(24454, "fidfhkjdgkdgdg");
+//        map.remove(71);
+//        map.remove(781);
+//        map.remove(99);   map.remove(781);
         System.out.println(map);
 
     }

@@ -63,7 +63,7 @@ public class LinkedHashMapCustom<K, V> {
         }
         Entry temp = bucket[hash];
         while (temp != null) {
-            if (temp.key == key) {
+            if (temp.key .equals(key)) {
                 return (V) temp.val;
             }
             temp = temp.next;
@@ -79,7 +79,7 @@ public class LinkedHashMapCustom<K, V> {
     public boolean containsValue(V val) {
         Entry temp = root;
         while (temp != null) {
-            if (temp.val == val) {
+            if (temp.val.equals(val)) {
                 return true;
             }
             temp = temp.after;
@@ -145,13 +145,13 @@ public class LinkedHashMapCustom<K, V> {
 
     @Override
     public String toString() {
-        String ret = "[ ";
+        String ret = "{ ";
         Entry temp = root;
         while (temp != null) {
             ret += temp.key + "=" + temp.val + " ";
             temp = temp.after;
         }
-        ret += "]";
+        ret += "}";
         return ret;
     }
 
