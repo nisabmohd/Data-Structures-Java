@@ -23,6 +23,12 @@ public class Main {
 //        map.remove(71);
 //        map.remove(781);
 //        map.remove(99);   map.remove(781);
+//        System.out.println(map.get(79));
+//System.out.println(map.containsKey(45));
+//        System.out.println(map.containsValue("Nisab mohd"));
+//        System.out.println(map.getOrDefault(99, "default"));
+map.clear();
+
         System.out.println(map);
 
     }
