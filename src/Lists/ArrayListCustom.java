@@ -46,25 +46,25 @@ public class ArrayListCustom<T> {
         return true;
     }
 
-    private int in = 0;
-
-    public boolean addAll(int index, Collection<? extends T> c) {
-        in = index;
-        c.forEach(elem -> {
-            add(in++, elem);
-        });
-        return true;
-    }
-
-    public boolean removeAll() {
-        return true;
-    }
-
-    protected void removeRange(int fromIndex, int toIndex) {
-        for(int i=toIndex+1;i<arr.length;i++){
-            
-        }
-    }
+//    private int in = 0;
+//
+//    public boolean addAll(int index, Collection<? extends T> c) {
+//        in = index;
+//        c.forEach(elem -> {
+//            add(in++, elem);
+//        });
+//        return true;
+//    }
+//
+//    public boolean removeAll() {
+//        return true;
+//    }
+//
+//    protected void removeRange(int fromIndex, int toIndex) {
+//        for(int i=toIndex+1;i<arr.length;i++){
+//            
+//        }
+//    }
 
     public int size() {
         return size;
