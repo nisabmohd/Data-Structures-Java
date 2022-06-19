@@ -94,6 +94,7 @@ public class ArrayListCustom<T> {
 
     public void clear() {
         size = -1;
+         arr = new Object[DEFAULT_CAPACITY];
     }
 
     @Override
