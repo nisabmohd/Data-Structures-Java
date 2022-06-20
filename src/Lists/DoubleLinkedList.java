@@ -126,7 +126,7 @@ public class DoubleLinkedList<T> {
             size--;
             return ret;
         }
-        for (int i = 1; i < index - 1; i++) {
+        for (int i = 1; i < index ; i++) {
             temp = temp.next;
         }
         T ret = (T) temp.next.val;
