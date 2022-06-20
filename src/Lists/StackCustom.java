@@ -48,7 +48,10 @@ public class StackCustom<T> {
         return (T) arr[top];
     }
 
-    public T pop() {
+    public T pop() throws Exception {
+        if (top == -1) {
+            throw new Exception("Empty stack exception");
+        }
         T temp = (T) arr[top];
         top--;
         return temp;
