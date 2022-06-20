@@ -40,9 +40,9 @@ public class SingleLinkedList<T> {
             add(val);
             return;
         }
-        if(index==0){
-            Node node=new Node(val,root);
-            root=node;
+        if (index == 0) {
+            Node node = new Node(val, root);
+            root = node;
             return;
         }
         for (int i = 0; i < index - 1; i++) {
@@ -90,7 +90,7 @@ public class SingleLinkedList<T> {
         if (index > size) {
             throw new Exception("No such index found exception");
         }
-        for (int i = 0; i <index; i++) {
+        for (int i = 0; i < index; i++) {
             temp = temp.next;
         }
         return (T) temp.val;
@@ -98,7 +98,7 @@ public class SingleLinkedList<T> {
 
     public T set(int index, T val) throws Exception {
         Node temp = root;
-        if (index > size-1) {
+        if (index > size - 1) {
             throw new Exception("No such index found exception");
         }
         for (int i = 0; i < index; i++) {
@@ -106,6 +106,24 @@ public class SingleLinkedList<T> {
         }
         temp.val = val;
         return (T) temp.val;
+    }
+
+    public T remove(int index) throws Exception {
+        if (index > size - 1) {
+            throw new RuntimeException("No such index found exception");
+        }
+        Node temp = root;
+        if (index == 0) {
+            T ret = (T) root.val;
+            root = root.next;
+            return ret;
+        }
+        for (int i = 1; i < index - 1; i++) {
+            temp = temp.next;
+        }
+        T ret = (T) temp.next.val;
+        temp.next = temp.next.next;
+        return ret;
     }
 
     @Override
