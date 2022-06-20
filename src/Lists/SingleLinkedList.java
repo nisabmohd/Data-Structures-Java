@@ -90,7 +90,7 @@ public class SingleLinkedList<T> {
         if (index > size) {
             throw new Exception("No such index found exception");
         }
-        for (int i = 0; i <= index; i++) {
+        for (int i = 0; i <index; i++) {
             temp = temp.next;
         }
         return (T) temp.val;
