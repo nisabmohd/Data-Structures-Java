@@ -65,13 +65,18 @@ public class DoubleLinkedList<T> {
         return false;
     }
 
-    public void add(int index, T val) throws Exception {
+    public boolean add(int index, T val) throws Exception {
         if (index > size) {
             throw new Exception("No such index found exception");
         }
+        if(index==0){
+            Node node=new Node(val,null,head);
+            head=node;
+            return true;
+        }
         if (index == size) {
             add(val);
-            return;
+            return true;
         }
         Node temp = head;
         for (int i = 0; i < index - 1; i++) {
@@ -80,6 +85,7 @@ public class DoubleLinkedList<T> {
         Node node = new Node(val, temp, temp.next);
         temp.next = node;
         size++;
+        return true;
     }
 
     public T set(int index, T val) throws Exception {
