@@ -1,12 +1,12 @@
 package Sets;
 
-import java.util.*;
-import Maps.HashMapCustom;
+import Maps.LinkedHashMapCustom;
+import java.util.Arrays;
 
-public class HashSetCustom<E> {
+public class LinkedHashSetCustom<E> {
 
-    private HashMapCustom<E, Object> map = new HashMapCustom<>();
     private final Object obj = new Object();
+    LinkedHashMapCustom<E, Object> map = new LinkedHashMapCustom<>();
 
     public boolean add(E val) {
         return map.put(val, obj);
@@ -14,23 +14,23 @@ public class HashSetCustom<E> {
 
     public void clear() {
         map.clear();
+        map = new LinkedHashMapCustom<>();
     }
 
     public boolean contains(E val) {
         return map.containsKey(val);
     }
 
-    public E remove(E val) throws Exception {
-        return (E) map.remove(val);
-    }
-
     public int size() {
         return map.size();
+    }
+
+    public E remove(E val) throws Exception {
+        return (E) map.remove(val);
     }
 
     @Override
     public String toString() {
         return Arrays.toString(map.toKeyArray());
     }
-
 }

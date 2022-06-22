@@ -6,6 +6,7 @@ public class LinkedHashMapCustom<K, V> {
     private Entry previous = null;
     private final Entry[] bucket = new Entry[DEFAULT_CAPACITY];
     private Entry root = null;
+    private int size = 0;
 
     private class Entry<K, V> {
 
@@ -29,33 +30,35 @@ public class LinkedHashMapCustom<K, V> {
         return key.toString().length() > 13 ? key.toString().length() % DEFAULT_CAPACITY : key.toString().length() % DEFAULT_CAPACITY % 10;
     }
 
-    public void put(K key, V val) {
+    public boolean put(K key, V val) {
 
         int hash = hashCode(key);
         Entry t = new Entry(key, val, null, null, previous);
         if (bucket[hash] == null) {
             bucket[hash] = t;
+            size++;
         } else {
             Entry temp = bucket[hash];
             if (temp.next == null) {
                 if (temp.key.equals(key)) {
                     temp.val = val;
-                    return;
+                    return true;
                 }
             }
             while (temp.next != null) {
                 if (temp.key.equals(key)) {
                     temp.val = val;
-                    return;
+                    return true;
                 }
                 temp = temp.next;
             }
             if (temp.key.equals(key)) {
                 temp.val = val;
-                return;
+                return true;
             }
             temp.next = t;
             t.before = previous;
+            size++;
         }
         if (previous != null) {
             previous.after = t;
@@ -64,6 +67,7 @@ public class LinkedHashMapCustom<K, V> {
         if (root == null) {
             root = t;
         }
+        return true;
     }
 
     public V get(K key) {
@@ -98,10 +102,11 @@ public class LinkedHashMapCustom<K, V> {
 
     }
 
-    public void remove(K key) throws Exception {
+    public V remove(K key) throws Exception {
         int hash = hashCode(key);
         Entry temp = bucket[hash];
-        if (temp.key == key) {
+        if (temp.key.equals(key)) {
+            V retval = (V) temp.val;
             if (temp == root) {
                 root = temp.after;
             }
@@ -112,9 +117,11 @@ public class LinkedHashMapCustom<K, V> {
                 temp.after.before = temp.before;
             }
             bucket[hash] = temp.next;
+            size--;
+            return retval;
         } else {
             while (temp.next != null) {
-                if (temp.next.key == key) {
+                if (temp.next.key.equals(key)) {
                     break;
                 }
                 temp = temp.next;
@@ -133,7 +140,10 @@ public class LinkedHashMapCustom<K, V> {
                     delete.after.before = delete.before != null ? delete.before : null;
                 }
                 temp.next = temp.next.next;
+                size--;
+                return (V) delete.val;
             }
+            return null;
         }
     }
 
@@ -163,6 +173,21 @@ public class LinkedHashMapCustom<K, V> {
         }
         ret += "}";
         return ret;
+    }
+
+    public int size() {
+        return size;
+    }
+
+    public Object[] toKeyArray() {
+        Object[] t = new Object[size()];
+        int j = 0;
+        Entry temp = root;
+        while (temp != null) {
+            t[j++] = temp.key;
+            temp = temp.after;
+        }
+        return t;
     }
 
 }
