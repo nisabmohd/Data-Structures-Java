@@ -1,8 +1,8 @@
 package Queues;
 
-import Lists.SingleLinkedList;
+import Lists.DoubleLinkedList;
 
-public class QueueCustom<T> extends SingleLinkedList<T> {
+public class QueueCustom<T> extends DoubleLinkedList<T> {
 
     public boolean offer(T val) {
         return super.add(val);

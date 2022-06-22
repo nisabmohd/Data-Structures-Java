@@ -34,16 +34,17 @@ public class DoubleLinkedList<T> {
         tail = head;
     }
 
-    public void add(T val) {
+    public boolean add(T val) {
         if (head == null) {
             head = new Node(val, null, null);
             tail = head;
             size++;
-            return;
+            return true;
         }
         tail.next = new Node(val, tail, tail.next);
         tail = tail.next;
         size++;
+        return true;
     }
 
     public boolean addAll(Collection<? extends T> c) {
