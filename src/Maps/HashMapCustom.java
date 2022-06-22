@@ -4,6 +4,7 @@ public class HashMapCustom<K, V> {
 
     private final int DEFAULT_CAPACITY = 17;
     private final Entry[] bucket = new Entry[DEFAULT_CAPACITY];
+    private int size = 0;
 
     private class Entry<K, V> {
 
@@ -23,26 +24,28 @@ public class HashMapCustom<K, V> {
         return key.toString().length() > 13 ? key.toString().length() % DEFAULT_CAPACITY : key.toString().length() % DEFAULT_CAPACITY % 10;
     }
 
-    public void put(K key, V val) {
+    public boolean put(K key, V val) {
         int hash = hashCode(key);
         if (bucket[hash] == null) {
             bucket[hash] = new Entry(key, val, null);
-            return;
+            size++;
+            return true;
         }
         Entry temp = bucket[hash];
         if (temp.key.equals(key)) {
             temp.val = val;
-            return;
+            return true;
         }
         while (temp.next != null) {
             if (temp.key.equals(key)) {
                 temp.val = val;
-                return;
+                return true;
             }
             temp = temp.next;
         }
-
+        size++;
         temp.next = new Entry(key, val, null);
+        return true;
     }
 
     public V get(K key) {
@@ -74,15 +77,17 @@ public class HashMapCustom<K, V> {
         return false;
     }
 
-    public void remove(K key) throws Exception {
+    public V remove(K key) throws Exception {
         int hash = hashCode(key);
         Entry temp = bucket[hash];
         if (temp == null) {
             throw new Exception("No such element exception");
         }
         if (temp.key.equals(key)) {
+            V retval = (V) bucket[hash].val;
             bucket[hash] = temp.next;
-            return;
+            size--;
+            return retval;
         }
         while (temp.next != null) {
             if (temp.next.key.equals(key)) {
@@ -90,10 +95,13 @@ public class HashMapCustom<K, V> {
             }
             temp = temp.next;
         }
-        if (temp.next== null ) {
+        if (temp.next == null) {
             throw new Exception("No such element exception");
         }
+        V retval = (V) temp.next.val;
         temp.next = temp.next.next;
+        size--;
+        return retval;
     }
 
     public V getOrDefault(K key, V defaultValue) {
@@ -122,6 +130,23 @@ public class HashMapCustom<K, V> {
         }
         str += "}";
         return str;
+    }
+
+    public int size() {
+        return size;
+    }
+
+    public Object[] toKeyArray() {
+        Object[] t = new Object[size()];
+        int j = 0;
+        for (int i = 0; i < bucket.length; i++) {
+            Entry temp = bucket[i];
+            while (temp != null) {
+                t[j++] = temp.key;
+                temp = temp.next;
+            }
+        }
+        return t;
     }
 
 }
