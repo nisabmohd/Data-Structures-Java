@@ -1,5 +1,6 @@
 package Maps;
-
+//check out my medium blog for hashmap
+//https://medium.com/@nisabmohd/hashmap-in-java-c010dec8fbd0
 public class HashMapCustom<K, V> {
 
     private final int DEFAULT_CAPACITY = 17;
