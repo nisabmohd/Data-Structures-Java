@@ -1,20 +1,6 @@
 package Trees;
 
-public class BinaryTree {
-
-    private class Node {
-
-        int val;
-        Node left;
-        Node right;
-
-        public Node(int val, Node left, Node right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
-
-    }
+public class BinaryTree extends AddOns{
 
     protected void postorder(Node root) {
         if (root == null) {
@@ -45,9 +31,11 @@ public class BinaryTree {
 
     public static void main(String[] args) {
         BinaryTree tree = new BinaryTree();
-        BinaryTree.Node root = tree.new Node(45, tree.new Node(99, tree.new Node(76, null, null), null), tree.new Node(98, null, tree.new Node(55, null, null)));
-        tree.preorder(root);System.out.println("");
-        tree.postorder(root);System.out.println("");
+        Node root = new Node(45, new Node(99, new Node(76, null, null), null), new Node(98, null, new Node(55, null, null)));
+        tree.preorder(root);
+        System.out.println("");
+        tree.postorder(root);
+        System.out.println("");
         tree.inorder(root);
     }
 }
