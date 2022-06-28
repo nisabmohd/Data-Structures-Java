@@ -59,6 +59,10 @@ public class BST extends BinaryTree {
         return getMin(root.left);
     }
 
+    public int getMin() {
+        return getMin(root);
+    }
+
     public boolean contains(int val) {
         return contains(val, root);
     }
@@ -91,5 +95,21 @@ public class BST extends BinaryTree {
 
     public void levelorder() {
         super.levelorder(root);
+    }
+
+    public void leftView() {
+        super.leftView(root);
+    }
+
+    public void rightView() {
+        super.rightView(root);
+    }
+
+    public int height() {
+        return height(root);
+    }
+
+    public int size() {
+        return super.size(root);
     }
 }
