@@ -20,40 +20,40 @@ public class AddOns {
 
     protected void leftView(Node root) {
         Map<Integer, Integer> map = new LinkedHashMap<>();
-        customlevelpreorderhelper(root, map, 0);
+        customleftviewpreorderhelper(root, map, 0);
         map.forEach((K, V) -> {
             System.out.print(V + " ");
         });
     }
 
-    private void customlevelpreorderhelper(Node node, Map<Integer, Integer> map, int level) {
+    private void customleftviewpreorderhelper(Node node, Map<Integer, Integer> map, int level) {
         if (node == null) {
             return;
         }
         if (!map.containsKey(level)) {
             map.put(level, node.val);
         }
-        customlevelpreorderhelper(node.left, map, level + 1);
-        customlevelpreorderhelper(node.right, map, level + 1);
+        customleftviewpreorderhelper(node.left, map, level + 1);
+        customleftviewpreorderhelper(node.right, map, level + 1);
     }
 
     protected void rightView(Node root) {
         Map<Integer, Integer> map = new LinkedHashMap<>();
-        customlevelpostorderhelper(root, map, 0);
+        customrighttviewpostorderhelper(root, map, 0);
         map.forEach((K, V) -> {
             System.out.print(V + " ");
         });
     }
 
-    private void customlevelpostorderhelper(Node node, Map<Integer, Integer> map, int level) {
+    private void customrighttviewpostorderhelper(Node node, Map<Integer, Integer> map, int level) {
         if (node == null) {
             return;
         }
         if (!map.containsKey(level)) {
             map.put(level, node.val);
         }
-        customlevelpostorderhelper(node.right, map, level + 1);
-        customlevelpostorderhelper(node.left, map, level + 1);
+        customrighttviewpostorderhelper(node.right, map, level + 1);
+        customrighttviewpostorderhelper(node.left, map, level + 1);
 
     }
 
