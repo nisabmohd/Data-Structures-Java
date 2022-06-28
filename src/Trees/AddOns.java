@@ -66,6 +66,7 @@ public class AddOns {
     private int c = 0;
 
     protected int size(Node root) {
+        c=0;
         count(root);
         return c;
     }
