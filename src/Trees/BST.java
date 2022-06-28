@@ -23,10 +23,42 @@ public class BST extends BinaryTree {
         return node;
     }
 
-//    public int remove(int val) {
-//
-//    }
-//
+    public void remove(int val) {
+        root = remove(val, root);
+    }
+
+    private Node remove(int val, Node node) {
+        if (node.val > val) {
+            if (node.left != null) {
+                node.left = remove(val, node.left);
+            }
+        } else if (node.val < val) {
+            if (node.right != null) {
+                node.right = remove(val, node.right);
+            }
+        } else {
+            if (node.left == null && node.right == null) {
+                return node = null;
+            } else if (node.left == null && node.right != null) {
+                return node.right;
+            } else if (node.left != null && node.right == null) {
+                return node.left;
+            } else {
+                int removeable = getMin(node.right);
+                remove(removeable, root);
+                node.val = removeable;
+            }
+        }
+        return node;
+    }
+
+    private int getMin(Node root) {
+        if (root.left == null) {
+            return root.val;
+        }
+        return getMin(root.left);
+    }
+
     public boolean contains(int val) {
         return contains(val, root);
     }

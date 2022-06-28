@@ -37,5 +37,8 @@ public class BinaryTree extends AddOns{
         tree.postorder(root);
         System.out.println("");
         tree.inorder(root);
+                System.out.println("");
+
+        tree.levelorder(root);
     }
 }
