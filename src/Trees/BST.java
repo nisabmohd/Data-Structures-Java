@@ -112,4 +112,13 @@ public class BST extends BinaryTree {
     public int size() {
         return super.size(root);
     }
+
+    public void topViewTraversal() {
+        super.topView(root);
+    }
+    
+    public void bottomViewTraversal(){
+        super.botttomView(root);
+    }
+
 }

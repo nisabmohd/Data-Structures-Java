@@ -57,6 +57,62 @@ public class AddOns {
 
     }
 
+    static class Pair<K, V> {
+
+        private K key;
+        private V val;
+
+        public Pair(K key, V val) {
+            this.key = key;
+            this.val = val;
+        }
+
+        public K getKey() {
+            return this.key;
+        }
+
+        public V getValue() {
+            return this.val;
+        }
+
+    }
+
+    protected void topView(Node node) {
+        Queue<Pair<Node, Integer>> queue = new LinkedList<>();
+        Map<Integer, Integer> map = new TreeMap<>();
+        queue.add(new Pair<>(node, 0));
+        while (!queue.isEmpty()) {
+            Pair<Node, Integer> t = queue.remove();
+            if (!map.containsKey(t.getValue())) {
+                map.put(t.getValue(), t.getKey().val);
+            }
+            if (t.getKey().left != null) {
+                queue.add(new Pair<>(t.getKey().left, t.getValue() - 1));
+            }
+            if (t.getKey().right != null) {
+                queue.add(new Pair<>(t.getKey().right, t.getValue() + 1));
+            }
+        }
+        map.forEach((key, val) -> System.out.print(val + " "));
+    }
+
+    protected void botttomView(Node node) {
+        Queue<Pair<Node, Integer>> queue = new LinkedList<>();
+        Map<Integer, Integer> map = new TreeMap<>();
+        queue.add(new Pair<>(node, 0));
+        while (!queue.isEmpty()) {
+            Pair<Node, Integer> t = queue.remove();
+            map.put(t.getValue(), t.getKey().val);
+            if (t.getKey().left != null) {
+                queue.add(new Pair<>(t.getKey().left, t.getValue() - 1));
+            }
+            if (t.getKey().right != null) {
+                queue.add(new Pair<>(t.getKey().right, t.getValue() + 1));
+            }
+        }
+        map.forEach((key, val) -> System.out.print(val + " "));
+    }
+
     protected int height(Node root) {
         if (root == null) {
             return 0;
@@ -66,7 +122,7 @@ public class AddOns {
     private int c = 0;
 
     protected int size(Node root) {
-        c=0;
+        c = 0;
         count(root);
         return c;
     }
