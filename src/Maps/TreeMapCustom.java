@@ -1,10 +1,10 @@
 package Maps;
-// <------Incomplete yet ---->
+
 public class TreeMapCustom<K extends Comparable<K>, V> {
 
     Node root;
 
-    private class Node<K, V> {
+    private class Node<K extends Comparable<K>, V> implements Comparable<K> {
 
         K key;
         V val;
@@ -21,10 +21,11 @@ public class TreeMapCustom<K extends Comparable<K>, V> {
             this.key = key;
             this.val = val;
         }
-    }
 
-    private int compare(K a, K b) {
-        return a.compareTo(b);
+        @Override
+        public int compareTo(K o) {
+            return this.key.compareTo(o);
+        }
     }
 
     public void put(K key, V val) {
@@ -34,28 +35,56 @@ public class TreeMapCustom<K extends Comparable<K>, V> {
 
     private Node put(K key, V val, Node node) {
         if (node == null) {
-            return new Node(key, val);
-        } else if (compare((K) node.key, key) > 1) {
-            node.left = put(key, val, node.left);
-        } else if (compare((K) node.key, key) < 1) {
-            node.right = put(key, val, node.right);
+            node = new Node<>(key, val);
+        } else {
+            if (node.compareTo(key) > 0) {
+                node.left = put(key, val, node.left);
+            } else if (node.compareTo(key) < 0) {
+                node.right = put(key, val, node.right);
+            } else {
+                node.val = val;
+            }
         }
         return node;
     }
 
-    public void  display() {
-        System.out.print("[ ");
-        display(root);
-        System.out.println("]");
+    public boolean containsKey(K key) {
+        return get(key, root) == null;
     }
 
-    private void display(Node node) {
+    public V get(K key) {
+        return get(key, root);
+    }
+
+    private V get(K key, Node node) {
+        if (node == null) {
+            return null;
+        }
+        if (node.compareTo(key) == 0) {
+            return (V) node.val;
+        } else if (node.compareTo(key) < 0) {
+            return get(key, node.right);
+        }
+        return get(key, node.right);
+    }
+
+    private void display(Node node, StringBuilder helper) {
         if (node == null) {
             return;
         }
-        display(node.left);
-        System.out.print(node.key + "->" + node.val + " ");
-        display(node.right);
+        display(node.left, helper);
+        helper.append(node.key + "->" + node.val + " ");
+        display(node.right, helper);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder("[");
+        StringBuilder temp = new StringBuilder();
+        display(root, temp);
+        builder.append(temp);
+        builder.append("]");
+        return builder.toString();
     }
 
 }
