@@ -13,6 +13,10 @@ public class Graph {
         }
     }
 
+    public Graph(Graph o) {
+        this.list = o.list;
+    }
+
     public void addEdge(int source, int dest) {
         list.get(source).add(dest);
         list.get(dest).add(source);
@@ -33,9 +37,35 @@ public class Graph {
         }
         return builder.toString();
     }
-    
-    public void bfs(){
-        
+
+    public static String toString(Graph o) {
+        return o.toString();
+    }
+
+    public void bfs(int source) {
+        bfs(source, this);
+    }
+
+    public static void bfs(int source, Graph o) {
+        ArrayList<LinkedList<Integer>> bfslist = o.list;
+        Queue<Integer> queue = new LinkedList<>();
+        ArrayList<Boolean> visited = new ArrayList<>();
+        for (int i = 0; i < bfslist.size(); i++) {
+            visited.add(false);
+        }
+        queue.add(source);
+        visited.set(source, true);
+        while (!queue.isEmpty()) {
+            int node=queue.peek();
+            for (int i = 0; i < bfslist.get(node).size(); i++) {
+                if (visited.get(bfslist.get(node).get(i)) == false) {
+                    queue.add(bfslist.get(node).get(i));
+                    visited.set(bfslist.get(node).get(i), true);
+                }
+            }
+             System.out.print(queue.poll() + " ");
+        }
+
     }
 
 }
