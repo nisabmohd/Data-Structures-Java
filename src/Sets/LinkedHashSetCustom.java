@@ -5,6 +5,9 @@ import java.util.Arrays;
 
 public class LinkedHashSetCustom<E> {
 
+    public LinkedHashSetCustom() {
+    }
+
     private final Object obj = new Object();
     LinkedHashMapCustom<E, Object> map = new LinkedHashMapCustom<>();
 

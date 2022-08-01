@@ -5,6 +5,9 @@ import Maps.HashMapCustom;
 
 public class HashSetCustom<E> {
 
+    public HashSetCustom() {
+    }
+
     private HashMapCustom<E, Object> map = new HashMapCustom<>();
     private final Object obj = new Object();
 

@@ -1,8 +1,11 @@
 package Maps;
 
+import java.util.ArrayList;
+
 public class TreeMapCustom<K extends Comparable<K>, V> {
 
     Node root;
+    int size = 0;
 
     private class Node<K extends Comparable<K>, V> implements Comparable<K> {
 
@@ -28,14 +31,16 @@ public class TreeMapCustom<K extends Comparable<K>, V> {
         }
     }
 
-    public void put(K key, V val) {
+    public boolean put(K key, V val) {
         Node node = put(key, val, root);
         root = node;
+        return node != null;
     }
 
     private Node put(K key, V val, Node node) {
         if (node == null) {
             node = new Node<>(key, val);
+            size++;
         } else {
             if (node.compareTo(key) > 0) {
                 node.left = put(key, val, node.left);
@@ -54,6 +59,10 @@ public class TreeMapCustom<K extends Comparable<K>, V> {
 
     public V get(K key) {
         return get(key, root);
+    }
+
+    public int size() {
+        return size;
     }
 
     private V get(K key, Node node) {
@@ -103,6 +112,10 @@ public class TreeMapCustom<K extends Comparable<K>, V> {
         return getMin(node.left);
     }
 
+    public void clear() {
+        root = null;
+    }
+
     private void display(Node node, StringBuilder helper) {
         if (node == null) {
             return;
@@ -120,6 +133,21 @@ public class TreeMapCustom<K extends Comparable<K>, V> {
         builder.append(temp);
         builder.append("]");
         return builder.toString();
+    }
+
+    public ArrayList<K> toKeyArray() {
+        ArrayList<K> list = new ArrayList<>();
+        helperTraverse(list, root);
+        return list;
+    }
+
+    private void helperTraverse(ArrayList<K> list, Node node) {
+        if (node == null) {
+            return;
+        }
+        helperTraverse(list, node.left);
+        list.add((K) node.key);
+        helperTraverse(list, node.right);
     }
 
 }
