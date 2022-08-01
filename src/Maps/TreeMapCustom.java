@@ -49,7 +49,7 @@ public class TreeMapCustom<K extends Comparable<K>, V> {
     }
 
     public boolean containsKey(K key) {
-        return get(key, root) == null;
+        return get(key, root) != null;
     }
 
     public V get(K key) {
@@ -65,7 +65,42 @@ public class TreeMapCustom<K extends Comparable<K>, V> {
         } else if (node.compareTo(key) < 0) {
             return get(key, node.right);
         }
-        return get(key, node.right);
+        return get(key, node.left);
+    }
+
+    public V remove(K key) {
+        return (V) remove(key, root).val;
+    }
+
+    private Node remove(K key, Node node) {
+        if (node == null) {
+            return null;
+        }
+        if (node.compareTo(key) < 0) {
+            node.right = remove(key, node.right);
+        } else if (node.compareTo(key) > 0) {
+            node.left = remove(key, node.left);
+        } else {
+            if (node.left == null && node.right == null) {
+                return null;
+            } else if (node.left == null && node.right != null) {
+                return node.right;
+            } else if (node.left != null && node.right == null) {
+                return node.left;
+            } else {
+                K minKey = getMin(root.right);
+                node.right = remove(minKey, root);
+                node.val = minKey;
+            }
+        }
+        return node;
+    }
+
+    private K getMin(Node node) {
+        if (node.left == null) {
+            return (K) node.key;
+        }
+        return getMin(node.left);
     }
 
     private void display(Node node, StringBuilder helper) {
