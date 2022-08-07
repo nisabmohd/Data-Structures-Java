@@ -32,6 +32,7 @@ public class Trie {
 
     public Trie() {
         this.root = new TrieNode();
+        this.root.isEndOfWord = false;
     }
 
     public boolean add(String o) {
@@ -66,6 +67,22 @@ public class Trie {
             }
         }
         return temp.isEndOfWord;
+    }
+
+    public void clear() {
+        this.root = new TrieNode();
+    }
+
+    public void remove(String o) {
+        TrieNode node = root;
+        for (int i = 0; i < o.length(); i++) {
+            if (node.map.containsKey(o.charAt(i))) {
+                node = node.map.get(o.charAt(i));
+            } else {
+                return;
+            }
+        }
+        node.isEndOfWord = false;
     }
 
     @Override
