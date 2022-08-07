@@ -20,6 +20,14 @@ public class Trie {
             this.map = new HashMap<>();
         }
 
+        @Override
+        public String toString() {
+            StringBuilder builder = new StringBuilder();
+            builder.append(this.map);
+            builder.append(this.isEndOfWord);
+            return builder.toString();
+        }
+
     }
 
     public Trie() {
@@ -58,6 +66,14 @@ public class Trie {
             }
         }
         return temp.isEndOfWord;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        TrieNode node = root;
+        builder.append(node);
+        return builder.toString();
     }
 
 }
