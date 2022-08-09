@@ -1,8 +1,8 @@
 package Trees;
 
-public class BinaryTree extends AddOns{
+public class BinaryTree {
 
-    protected void postorder(Node root) {
+    protected void postorder(TreeNode root) {
         if (root == null) {
             return;
         }
@@ -11,7 +11,7 @@ public class BinaryTree extends AddOns{
         System.out.print(root.val + " ");
     }
 
-    protected void preorder(Node root) {
+    protected void preorder(TreeNode root) {
         if (root == null) {
             return;
         }
@@ -20,7 +20,7 @@ public class BinaryTree extends AddOns{
         preorder(root.right);
     }
 
-    protected void inorder(Node root) {
+    protected void inorder(TreeNode root) {
         if (root == null) {
             return;
         }
@@ -31,7 +31,7 @@ public class BinaryTree extends AddOns{
 
     public static void main(String[] args) {
         BinaryTree tree = new BinaryTree();
-        Node root = new Node(45, new Node(99, new Node(76, null, null), null), new Node(98, null, new Node(55, null, null)));
+        TreeNode root = new TreeNode(45, new TreeNode(99, new TreeNode(76, null, null), null), new TreeNode(98, null, new TreeNode(55, null, null)));
         tree.preorder(root);
         System.out.println("");
         tree.postorder(root);
@@ -39,6 +39,6 @@ public class BinaryTree extends AddOns{
         tree.inorder(root);
                 System.out.println("");
 
-        tree.levelorder(root);
+        TreeUtils.levelorder(root);
     }
 }

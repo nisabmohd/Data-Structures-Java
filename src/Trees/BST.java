@@ -2,17 +2,17 @@ package Trees;
 
 public class BST extends BinaryTree {
 
-    Node root;
+    TreeNode root;
 
     public boolean add(int val) {
-        Node check = add(val, root);
+        TreeNode check = add(val, root);
         root = check;
         return check == null ? false : true;
     }
 
-    private Node add(int val, Node node) {
+    private TreeNode add(int val, TreeNode node) {
         if (node == null) {
-            node = new Node(val, null, null);
+            node = new TreeNode(val, null, null);
         } else {
             if (node.val > val) {
                 node.left = add(val, node.left);
@@ -27,7 +27,7 @@ public class BST extends BinaryTree {
         root = remove(val, root);
     }
 
-    private Node remove(int val, Node node) {
+    private TreeNode remove(int val, TreeNode node) {
         if (node.val > val) {
             if (node.left != null) {
                 node.left = remove(val, node.left);
@@ -52,7 +52,7 @@ public class BST extends BinaryTree {
         return node;
     }
 
-    private int getMin(Node root) {
+    private int getMin(TreeNode root) {
         if (root.left == null) {
             return root.val;
         }
@@ -67,7 +67,7 @@ public class BST extends BinaryTree {
         return contains(val, root);
     }
 
-    private boolean contains(int val, Node node) {
+    private boolean contains(int val, TreeNode node) {
         if (node == null) {
             return false;
         }
@@ -94,31 +94,31 @@ public class BST extends BinaryTree {
     }
 
     public void levelorder() {
-        super.levelorder(root);
+        TreeUtils.levelorder(root);
     }
 
     public void leftView() {
-        super.leftView(root);
+        TreeUtils.leftView(root);
     }
 
     public void rightView() {
-        super.rightView(root);
+        TreeUtils.rightView(root);
     }
 
     public int height() {
-        return height(root);
+        return TreeUtils.height(root);
     }
 
     public int size() {
-        return super.size(root);
+        return TreeUtils.size(root);
     }
 
     public void topViewTraversal() {
-        super.topView(root);
+        TreeUtils.topView(root);
     }
     
     public void bottomViewTraversal(){
-        super.botttomView(root);
+        TreeUtils.botttomView(root);
     }
 
 }

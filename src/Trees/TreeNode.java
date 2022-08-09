@@ -1,12 +1,12 @@
 package Trees;
 
-public class Node {
+public class TreeNode {
 
     int val;
-    Node left;
-    Node right;
+    TreeNode left;
+    TreeNode right;
 
-    public Node(int val, Node left, Node right) {
+    public TreeNode(int val, TreeNode left, TreeNode right) {
         this.val = val;
         this.left = left;
         this.right = right;

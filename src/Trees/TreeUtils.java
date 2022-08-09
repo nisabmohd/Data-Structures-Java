@@ -2,10 +2,10 @@ package Trees;
 
 import java.util.*;
 
-public class AddOns {
+public class TreeUtils {
 
-    protected void levelorder(Node root) {
-        Queue<Node> queue = new LinkedList<>();
+    public static void levelorder(TreeNode root) {
+        Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
         while (!queue.isEmpty()) {
             if (queue.peek().left != null) {
@@ -18,7 +18,7 @@ public class AddOns {
         }
     }
 
-    protected void leftView(Node root) {
+    public static void leftView(TreeNode root) {
         Map<Integer, Integer> map = new LinkedHashMap<>();
         customleftviewpreorderhelper(root, map, 0);
         map.forEach((K, V) -> {
@@ -26,7 +26,7 @@ public class AddOns {
         });
     }
 
-    private void customleftviewpreorderhelper(Node node, Map<Integer, Integer> map, int level) {
+    private static void customleftviewpreorderhelper(TreeNode node, Map<Integer, Integer> map, int level) {
         if (node == null) {
             return;
         }
@@ -37,7 +37,7 @@ public class AddOns {
         customleftviewpreorderhelper(node.right, map, level + 1);
     }
 
-    protected void rightView(Node root) {
+    public static void rightView(TreeNode root) {
         Map<Integer, Integer> map = new LinkedHashMap<>();
         customrighttviewpostorderhelper(root, map, 0);
         map.forEach((K, V) -> {
@@ -45,7 +45,7 @@ public class AddOns {
         });
     }
 
-    private void customrighttviewpostorderhelper(Node node, Map<Integer, Integer> map, int level) {
+    private static void customrighttviewpostorderhelper(TreeNode node, Map<Integer, Integer> map, int level) {
         if (node == null) {
             return;
         }
@@ -77,12 +77,12 @@ public class AddOns {
 
     }
 
-    protected void topView(Node node) {
-        Queue<Pair<Node, Integer>> queue = new LinkedList<>();
+    public static void topView(TreeNode node) {
+        Queue<Pair<TreeNode, Integer>> queue = new LinkedList<>();
         Map<Integer, Integer> map = new TreeMap<>();
         queue.add(new Pair<>(node, 0));
         while (!queue.isEmpty()) {
-            Pair<Node, Integer> t = queue.remove();
+            Pair<TreeNode, Integer> t = queue.remove();
             if (!map.containsKey(t.getValue())) {
                 map.put(t.getValue(), t.getKey().val);
             }
@@ -96,12 +96,12 @@ public class AddOns {
         map.forEach((key, val) -> System.out.print(val + " "));
     }
 
-    protected void botttomView(Node node) {
-        Queue<Pair<Node, Integer>> queue = new LinkedList<>();
+    public static void botttomView(TreeNode node) {
+        Queue<Pair<TreeNode, Integer>> queue = new LinkedList<>();
         Map<Integer, Integer> map = new TreeMap<>();
         queue.add(new Pair<>(node, 0));
         while (!queue.isEmpty()) {
-            Pair<Node, Integer> t = queue.remove();
+            Pair<TreeNode, Integer> t = queue.remove();
             map.put(t.getValue(), t.getKey().val);
             if (t.getKey().left != null) {
                 queue.add(new Pair<>(t.getKey().left, t.getValue() - 1));
@@ -113,21 +113,21 @@ public class AddOns {
         map.forEach((key, val) -> System.out.print(val + " "));
     }
 
-    protected int height(Node root) {
+    public static int height(TreeNode root) {
         if (root == null) {
             return 0;
         }
         return Math.max(height(root.left), height(root.right)) + 1;
     }
-    private int c = 0;
+    private static int c = 0;
 
-    protected int size(Node root) {
+    public static int size(TreeNode root) {
         c = 0;
         count(root);
         return c;
     }
 
-    private void count(Node node) {
+    private static void count(TreeNode node) {
         if (node == null) {
             return;
         }
