@@ -2,7 +2,7 @@ package Lists;
 
 import java.util.*;
 
-public class ArrayListCustom<T> {
+public class ArrayListCustom<T> implements Cloneable {
 
     private final int DEFAULT_CAPACITY = 7;
     private int size = 0;
