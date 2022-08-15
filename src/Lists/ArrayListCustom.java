@@ -4,8 +4,8 @@ import java.util.*;
 
 public class ArrayListCustom<T> {
 
-    private final int DEFAULT_CAPACITY = 17;
-    private int size = -1;
+    private final int DEFAULT_CAPACITY = 7;
+    private int size = 0;
     private Object[] arr;
 
     public ArrayListCustom(int initialSize) {
@@ -17,99 +17,106 @@ public class ArrayListCustom<T> {
     }
 
     private void doubleArr() {
-        Object[] temp = new Object[2 * arr.length];
+        Object[] temp = new Object[arr.length * 2];
         for (int i = 0; i < arr.length; i++) {
             temp[i] = arr[i];
         }
         arr = temp;
     }
 
-    private void sizeplusone() {
-        Object[] temp = new Object[1 + arr.length];
-        for (int i = 0; i < arr.length; i++) {
-            temp[i] = arr[i];
-        }
-        arr = temp;
-    }
-
-    public void add(T val) {
-        if (arr.length == size + 1) {
+    public boolean add(T val) {
+        if (arr.length == size) {
             doubleArr();
         }
-        arr[++size] = val;
+        arr[size++] = (T) val;
+        return ((T) arr[size - 1]).equals(val);
+    }
+
+    public void add(int index, T val) {
+        if (index >= size) {
+            for (int i = 0; i < index - size - 1; i++) {
+                this.add((T) new Object());
+            }
+            this.add(val);
+        } else {
+            doubleArr();
+            for (int i = size - 1; i >= index; i--) {
+                arr[i + 1] = arr[i];
+            }
+            arr[index] = val;
+            size++;
+        }
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 
     public boolean addAll(Collection<? extends T> c) {
-        c.forEach(elem -> {
-            add(elem);
-        });
-        return true;
+        int prevSize = size();
+        c.forEach(item -> this.add(item));
+        return (size() - prevSize) == c.size();
+    }
+
+    public T get(int index) {
+        if (index >= size) {
+            throw new RuntimeException("No Such Element Exception");
+        }
+        return (T) arr[index];
     }
 
     public int size() {
         return size;
     }
 
-    public boolean conatains(T val) {
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] == val) {
+    public boolean IsEmpty() {
+        return size() == 0;
+    }
+
+    public T remove(int index) {
+        if (index >= size) {
+            throw new RuntimeException("Index Out Of Bounds Exception");
+        }
+        T rem = (T) arr[index];
+        for (int i = index + 1; i < size; i++) {
+            arr[i - 1] = arr[i];
+        }
+        size -= 1;
+        return rem;
+    }
+
+    public boolean contains(T val) {
+        for (int i = 0; i < size; i++) {
+            if (((T) arr[i]).equals(val)) {
                 return true;
             }
         }
         return false;
     }
 
-    public boolean isEmpty() {
-        return size() == -1;
-    }
-
-    public void add(int index, T val) {
-        if (index == size) {
-            add(val);
-            return;
-        }
-        if (index > size) {
-            doubleArr();
-            for (int i = arr.length; i < index; i++) {
-                add((T) new Object());
-            }
-            add(val);
-            return;
-        }
-        sizeplusone();
-        for (int j = arr.length - 2; j >= index; j--) {
-            arr[j + 1] = arr[j];
-        }
-        arr[index] = val;
-    }
-
-    public T set(int index, T val) {
-        arr[index] = val;
-        return (T) arr[index];
-    }
-
-    public T get(int index) {
-        return (T) arr[index];
-    }
-
-    public void clear() {
-        size = -1;
-         arr = new Object[DEFAULT_CAPACITY];
-    }
-
     @Override
     public String toString() {
-        String ret = "[";
+        StringBuilder builder = new StringBuilder();
+        builder.append("[");
+        if (IsEmpty()) {
+            return builder.append("]").toString();
+        }
         int i = 0;
-        for (; i < size; i++) {
-            ret += arr[i] + ",";
+        for (; i < size - 1; i++) {
+            builder.append((T) arr[i]);
+            builder.append(", ");
         }
-        if (size != -1) {
-            ret += arr[i];
-        }
-        ret += "]";
-        return ret;
+        builder.append((T) arr[i]);
+        return builder.append("]").toString();
+    }
 
+    public Object[] toArray() {
+        Object[] ret = new Object[size];
+        for (int i = 0; i < size; i++) {
+            ret[i] = arr[i];
+        }
+        return ret;
     }
 
 }
