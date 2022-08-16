@@ -70,7 +70,7 @@ public class ArrayListCustom<T> implements Cloneable {
         return size;
     }
 
-    public boolean IsEmpty() {
+    public boolean isEmpty() {
         return size() == 0;
     }
 
@@ -99,7 +99,7 @@ public class ArrayListCustom<T> implements Cloneable {
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("[");
-        if (IsEmpty()) {
+        if (isEmpty()) {
             return builder.append("]").toString();
         }
         int i = 0;
