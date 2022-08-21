@@ -2,7 +2,7 @@ package Lists;
 
 import java.util.Collection;
 
-public class SingleLinkedList<T> {
+public class SingleLinkedList<T> implements Cloneable {
 
     private Node root, tail;
     private int size = 0;
@@ -24,12 +24,12 @@ public class SingleLinkedList<T> {
             root = new Node(val, null);
             tail = root;
             size++;
-            return true;
+            return tail.val == val;
         }
         tail.next = new Node(val, null);
         tail = tail.next;
         size++;
-        return true;
+        return tail.val == val;
     }
 
     public void add(int index, T val) throws Exception {
@@ -44,6 +44,7 @@ public class SingleLinkedList<T> {
         if (index == 0) {
             Node node = new Node(val, root);
             root = node;
+            size++;
             return;
         }
         for (int i = 0; i < index - 1; i++) {
@@ -66,10 +67,9 @@ public class SingleLinkedList<T> {
     }
 
     public boolean addAll(Collection<? extends T> c) {
-        c.forEach(elem -> {
-            add(elem);
-        });
-        return true;
+        int prevSize = size();
+        c.forEach(elem -> add(elem));
+        return size() - prevSize == c.size();
     }
 
     public int size() {
@@ -88,7 +88,7 @@ public class SingleLinkedList<T> {
 
     public T get(int index) throws Exception {
         Node temp = root;
-        if (index > size) {
+        if (index >= size) {
             throw new Exception("No such index found exception");
         }
         for (int i = 0; i < index; i++) {
@@ -117,6 +117,7 @@ public class SingleLinkedList<T> {
         if (index == 0) {
             T ret = (T) root.val;
             root = root.next;
+            size--;
             return ret;
         }
         for (int i = 1; i < index - 1; i++) {
@@ -124,6 +125,7 @@ public class SingleLinkedList<T> {
         }
         T ret = (T) temp.next.val;
         temp.next = temp.next.next;
+        size--;
         return ret;
     }
 
@@ -142,4 +144,46 @@ public class SingleLinkedList<T> {
         ret += temp.val + "]";
         return ret;
     }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+
+    public Object[] toArray() {
+        Node temp = root;
+        Object[] arr = new Object[size];
+        int i = 0;
+        while (temp != null) {
+            arr[i++] = temp.val;
+            temp = temp.next;
+        }
+        return arr;
+    }
+
+    public T pop() throws Exception {
+        return remove(size - 1);
+    }
+
+    public T remove() throws Exception {
+        //removes head as per Java Docs
+        return remove(0);
+    }
+
+    public T removeFirst() throws Exception {
+        return remove();
+    }
+
+    public T removeLast() throws Exception {
+        return pop();
+    }
+
+    public T peek() {
+        if (root != null) {
+            return (T) root.val;
+        } else {
+            throw new RuntimeException("Index Out of Bound Exception");
+        }
+    }
+
 }
