@@ -68,6 +68,8 @@ public class CircularLinkedLIst<T> {
         if (index == 0) {
             T retval = (T) head.val;
             head = head.next;
+            tail.next=head;
+            size--;
             return retval;
         }
         if (index == size - 1) {
@@ -79,6 +81,7 @@ public class CircularLinkedLIst<T> {
             }
             T retval = (T) temp.next.val;
             temp.next = head;
+            size--;
             return retval;
         }
         Node temp = head;
@@ -89,6 +92,7 @@ public class CircularLinkedLIst<T> {
         T retval = (T) temp.val;
         temp.val = temp.next.val;
         temp.next = temp.next.next;
+        size--;
         return retval;
     }
 

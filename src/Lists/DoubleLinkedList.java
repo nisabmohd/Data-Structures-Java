@@ -44,14 +44,13 @@ public class DoubleLinkedList<T> {
         tail.next = new Node(val, tail, tail.next);
         tail = tail.next;
         size++;
-        return true;
+        return tail.val == val;
     }
 
     public boolean addAll(Collection<? extends T> c) {
-        c.forEach(elem -> {
-            add(elem);
-        });
-        return true;
+        int prevSize = size();
+        c.forEach(elem -> add(elem));
+        return size() - prevSize == c.size();
     }
 
     public boolean contains(T val) {
@@ -69,9 +68,10 @@ public class DoubleLinkedList<T> {
         if (index > size) {
             throw new Exception("No such index found exception");
         }
-        if(index==0){
-            Node node=new Node(val,null,head);
-            head=node;
+        if (index == 0) {
+            Node node = new Node(val, null, head);
+            head = node;
+            size++;
             return true;
         }
         if (index == size) {
@@ -89,7 +89,7 @@ public class DoubleLinkedList<T> {
     }
 
     public T set(int index, T val) throws Exception {
-        if (index > size) {
+        if (index >= size) {
             throw new Exception("No such index found exception");
         }
         Node temp = head;
@@ -117,9 +117,6 @@ public class DoubleLinkedList<T> {
         }
         Node temp = head;
         if (index == 0) {
-            if (head == null) {
-                throw new RuntimeException("No such element exception");
-            }
             T ret = (T) head.val;
             head = head.next;
             head.prev = null;
@@ -133,7 +130,7 @@ public class DoubleLinkedList<T> {
             size--;
             return ret;
         }
-        for (int i = 1; i < index ; i++) {
+        for (int i = 1; i < index; i++) {
             temp = temp.next;
         }
         T ret = (T) temp.next.val;
