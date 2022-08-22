@@ -44,7 +44,7 @@ public class DoubleLinkedList<T> {
         tail.next = new Node(val, tail, tail.next);
         tail = tail.next;
         size++;
-        return tail.val == val;
+        return tail.val.equals(val);
     }
 
     public boolean addAll(Collection<? extends T> c) {

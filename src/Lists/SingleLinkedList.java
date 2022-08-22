@@ -24,12 +24,12 @@ public class SingleLinkedList<T> implements Cloneable {
             root = new Node(val, null);
             tail = root;
             size++;
-            return tail.val == val;
+            return tail.val.equals(val);
         }
         tail.next = new Node(val, null);
         tail = tail.next;
         size++;
-        return tail.val == val;
+        return tail.val.equals(val);
     }
 
     public void add(int index, T val) throws Exception {
