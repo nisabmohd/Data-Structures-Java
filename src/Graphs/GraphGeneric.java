@@ -47,7 +47,10 @@ public class GraphGeneric<T> {
         return ans;
     }
 
-    public ArrayList<T> dfs(T source) {
+    public ArrayList<T> dfs(T source) { // return only a component of graph containing that source in it
+        if (!map.containsKey(source)) {
+            return new ArrayList<>();
+        }
         return this.dfs(source, new HashSet<>());
     }
 
@@ -60,12 +63,6 @@ public class GraphGeneric<T> {
                 ret.addAll(dfs((T) item, visited));
             }
         });
-        return ret;
-    }
-
-    private ArrayList<T> bfs(T s) {
-        ArrayList<T> ret = new ArrayList<>();
-
         return ret;
     }
 
