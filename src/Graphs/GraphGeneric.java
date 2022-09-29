@@ -4,6 +4,7 @@ import java.util.*;
 
 public class GraphGeneric<T> {
 
+    // example for generic graph is present in dir -> ./GenericGraphExample.java
     Map<Object, ArrayList<Object>> map;
 
     public GraphGeneric() {
