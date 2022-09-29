@@ -6,8 +6,6 @@ class User {  //   This is how social media connection is made
 
     String name;
     long uid;
-    Date dob;
-    boolean single;
 
     public User(String name, long uid) {
         this.name = name;
@@ -30,6 +28,7 @@ public class GraphGenericExample {
         User three = new User("James", 57576757);
         User four = new User("Tylor", 7575758);
 
+        // Adding edge basically means making friends
         graph.addEdge(one, two);
         graph.addEdge(one, three);
         graph.addEdge(one, four);
