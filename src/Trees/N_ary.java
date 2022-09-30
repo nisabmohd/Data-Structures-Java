@@ -2,14 +2,14 @@ package Trees;
 
 import java.util.*;
 
-public class N_ary {
+public class N_ary<E> {
 
-    static class Node {
+    public class Node<T extends E> {
 
-        int val;
+        T val;
         ArrayList<Node> list;
 
-        public Node(int val, ArrayList<Node> list) {
+        public Node(T val, ArrayList<Node> list) {
             this.val = val;
             this.list = list;
         }
@@ -21,29 +21,29 @@ public class N_ary {
             return;
         }
         System.out.print(root.val + " ");
-        for (Node item : root.list) {
-            preOrder(item);
-        }
+        root.list.forEach(item -> {
+            preOrder((Node) item);
+        });
     }
 
     public void postOrder(Node root) {
         if (root == null) {
             return;
         }
-        for (Node item : root.list) {
-            postOrder(item);
-        }
+        root.list.forEach((item) -> {
+            postOrder((Node) item);
+        });
         System.out.print(root.val + " ");
     }
 
     public static void main(String[] args) {
-        N_ary tree = new N_ary();
-        Node node4 = new Node(5, new ArrayList<>());
-        Node node5 = new Node(6, new ArrayList<>());
-        Node node1 = new Node(3, new ArrayList<>(Arrays.asList(node4, node5)));
-        Node node2 = new Node(2, new ArrayList<>());
-        Node node3 = new Node(4, new ArrayList<>());
-        Node root = new Node(1, new ArrayList<>(Arrays.asList(node1, node2, node3)));
+        N_ary<Integer> tree = new N_ary<>();
+        N_ary.Node node4 = tree.new Node<>(5, new ArrayList<>());
+        N_ary.Node node5 = tree.new Node<>(6, new ArrayList<>());
+        N_ary.Node node1 = tree.new Node<>(3, new ArrayList<>(Arrays.asList(node4, node5)));
+        N_ary.Node node2 = tree.new Node<>(2, new ArrayList<>());
+        N_ary.Node node3 = tree.new Node<>(4, new ArrayList<>());
+        N_ary.Node root = tree.new Node<>(1, new ArrayList<>(Arrays.asList(node1, node2, node3)));
         tree.preOrder(root);
         System.out.println("");
         System.out.println("");

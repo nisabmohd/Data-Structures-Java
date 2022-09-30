@@ -37,7 +37,7 @@ public class BinaryTree {
         tree.postorder(root);
         System.out.println("");
         tree.inorder(root);
-                System.out.println("");
+        System.out.println("");
 
         TreeUtils.levelorder(root);
     }
