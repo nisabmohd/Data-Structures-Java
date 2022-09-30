@@ -16,24 +16,28 @@ public class N_ary<E> {
 
     }
 
-    public void preOrder(Node root) {
+    public List<E> preOrder(Node root) {
         if (root == null) {
-            return;
+            return new ArrayList<>();
         }
-        System.out.print(root.val + " ");
+        List<E> ans = new ArrayList<>();
+        ans.add((E) root.val);
         root.list.forEach(item -> {
-            preOrder((Node) item);
+            ans.addAll(preOrder((Node) item));
         });
+        return ans;
     }
 
-    public void postOrder(Node root) {
+    public List<E> postOrder(Node root) {
         if (root == null) {
-            return;
+            return new ArrayList<>();
         }
+        List<E> ans = new ArrayList<>();
         root.list.forEach((item) -> {
-            postOrder((Node) item);
+            ans.addAll(postOrder((Node) item));
         });
-        System.out.print(root.val + " ");
+        ans.add((E) root.val);
+        return ans;
     }
 
     public static void main(String[] args) {
@@ -44,10 +48,8 @@ public class N_ary<E> {
         N_ary.Node node2 = tree.new Node<>(2, new ArrayList<>());
         N_ary.Node node3 = tree.new Node<>(4, new ArrayList<>());
         N_ary.Node root = tree.new Node<>(1, new ArrayList<>(Arrays.asList(node1, node2, node3)));
-        tree.preOrder(root);
-        System.out.println("");
-        System.out.println("");
-        tree.postOrder(root);
+        System.out.println(tree.preOrder(root));
+        System.out.println(tree.postOrder(root));
 
     }
 }
