@@ -1,8 +1,13 @@
 # Data Structure Implementations in Java
-#### This repo contains all the Internal Java and custom data structure used for problem solving and for Interview prep.
+ We know how data structure plays an important role in interview preparation as well for problem solving.
+
+Usually we use internal data structures and we don’t know how things are working behind. Using a data structure without knowing its working its useless. This data structure implementation are asked in interview and if you know how to implement a data structure you can design your own custom data structure according to your needs.
+
+So you understood that data structure implementation will not only help you in interview but also can be used in development for creating custom structures. So from where we need to learn this?
+
+I have made this GitHub repository containing all the internal collection framework of Java plus Data structures needed in daily life. Below is the list of Data structures in my GitHub repo 
+
 <img src="image.png" />
-
-
 
 
 <table align="center">  <thead> <tr>  <th>S.NO</th>  <th>Data Structure     </th><th>      </th><th>Prerequisite     </th>  </tr>  </thead>  <tbody>
@@ -39,16 +44,4 @@ Trees traversals </td>  </tr>
 
 
 
-<h2 align="center">Connect with me : </h2>
 
-<p align="center">
-  <a href="https://twitter.com/mohdnisab">
-    <img width="30px" src="https://www.vectorlogo.zone/logos/twitter/twitter-official.svg" />
-  </a>&ensp;
-  <a href="https://www.linkedin.com/in/mohd-nisab-alam-725148197">
-    <img width="30px" src="https://www.vectorlogo.zone/logos/linkedin/linkedin-icon.svg" />
-  </a>&ensp;
-  <a href="https://www.instagram.com/thenisab/">
-    <img width="30px" src="https://www.vectorlogo.zone/logos/instagram/instagram-icon.svg" />
-  </a>&ensp;
-  </p>
