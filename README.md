@@ -35,7 +35,7 @@ I have made this GitHub repository containing all the internal collection framew
 Trees</td>    </tr>
 
 <tr>  <td>8</td>  <td><a href="https://github.com/nisabmohd/DS-Implementations/tree/master/src/Graphs">Graphs</a><td>
-<table>  <thead>  <tr>  <th>S.NO</th>  <th>Data Structure     </th>  </tr>  </thead>  <tbody>  <tr>  <td>1.1</td>  <td><a href="https://github.com/nisabmohd/DS-Implementations/blob/master/src/Graphs/Graph.java">Graph</a></td> </tr><tr>  <td>1.2</td>  <td><a href="https://github.com/nisabmohd/Data-Structures/blob/master/src/Graphs/GraphGeneric.java">GenericGraph</a></td> </tr><tr>  <td>1.3</td>  <td><a href="https://github.com/nisabmohd/Data-Structures/blob/master/src/Graphs/GraphGenericExample.java">GeneicGraphExample</a></td> </tr>  </tbody>  </table>   </td><td>
+<table>  <thead>  <tr>  <th>S.NO</th>  <th>Data Structure     </th>  </tr>  </thead>  <tbody>  <tr>  <td>8.1</td>  <td><a href="https://github.com/nisabmohd/DS-Implementations/blob/master/src/Graphs/Graph.java">Graph</a></td> </tr><tr>  <td>8.2</td>  <td><a href="https://github.com/nisabmohd/Data-Structures/blob/master/src/Graphs/GraphGeneric.java">GenericGraph</a></td> </tr><tr>  <td>8.3</td>  <td><a href="https://github.com/nisabmohd/Data-Structures/blob/master/src/Graphs/GraphGenericExample.java">GeneicGraphExample</a></td> </tr>  </tbody>  </table>   </td><td>
 Trees traversals </td>  </tr>
 </tbody>  </table>
 
