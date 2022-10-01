@@ -35,4 +35,17 @@ public interface BTree {
 
     public List<Object> postOrder(TreeNode node);
 
+    public List<List<Object>> levelOrder(TreeNode node);
+
+    public List<Object> leftView(TreeNode node);
+
+    public List<Object> rightView(TreeNode node);
+
+    public List<Object> topView(TreeNode node);
+
+    public List<Object> botttomView(TreeNode node);
+
+    public int height(TreeNode node);
+
+    public int size(TreeNode node);
 }
