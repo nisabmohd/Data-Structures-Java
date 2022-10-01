@@ -1,5 +1,6 @@
 # Data Structure Implementations in Java
 #### This repo contains all the Internal Java and custom data structure used for problem solving and for Interview prep.
+<img src="image.png" />
 
 ## Table Of Contents
 - <a href="https://github.com/nisabmohd/DS-Implementations/tree/master/src/Lists">List</a>
@@ -17,8 +18,9 @@
   - <a href="https://github.com/nisabmohd/DS-Implementations/blob/master/src/Queues/CircularQueue.java">CircularQueue</a>
 #
  - <a href="https://github.com/nisabmohd/DS-Implementations/tree/master/src/Trees">Tree</a>
+   - Prerequisite Interface : <a href="https://github.com/nisabmohd/Data-Structures/blob/master/src/Trees/BTree.java">BTree</a>
    - <a href="https://github.com/nisabmohd/DS-Implementations/blob/master/src/Trees/BinaryTree.java">BinaryTree</a>
-   - <a href="https://github.com/nisabmohd/DS-Implementations/blob/master/src/Trees/BST.java">BinarySearchTree</a>
+   - <a href="https://github.com/nisabmohd/Data-Structures/blob/master/src/Trees/BinarySearchTree.java">BinarySearchTree</a>
    - <a href="https://github.com/nisabmohd/DS-Implementations/blob/master/src/Trees/N_ary.java">N_Arry</a>
 # 
 - <a href="https://github.com/nisabmohd/DS-Implementations/tree/master/src/Maps">Map</a>
@@ -41,9 +43,11 @@
 #   
 - <a href="https://github.com/nisabmohd/DS-Implementations/tree/master/src/Graphs">Graph</a>
    - <a href="https://github.com/nisabmohd/DS-Implementations/blob/master/src/Graphs/Graph.java">Graph</a> 
+   - <a href="https://github.com/nisabmohd/Data-Structures/blob/master/src/Graphs/GraphGeneric.java">Generic Graph</a> 
+   - <a href="https://github.com/nisabmohd/Data-Structures/blob/master/src/Graphs/GraphGenericExample.java">Generic Graph Example</a> 
 #
 
-<img src="image.png" />
+
 
 <h2 align="center">Connect with me : </h2>
 
