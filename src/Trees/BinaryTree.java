@@ -1,44 +1,42 @@
 package Trees;
 
-public class BinaryTree {
+import java.util.*;
 
-    protected void postorder(TreeNode root) {
-        if (root == null) {
-            return;
+public class BinaryTree implements BTree {
+
+    @Override
+    public List<Object> inOrder(TreeNode node) {
+        if (node == null) {
+            return new ArrayList<>();
         }
-        postorder(root.left);
-        postorder(root.right);
-        System.out.print(root.val + " ");
+        List<Object> list = new ArrayList<>();
+        list.addAll(inOrder(node.left));
+        list.add(node.val);
+        list.addAll(inOrder(node.right));
+        return list;
     }
 
-    protected void preorder(TreeNode root) {
-        if (root == null) {
-            return;
+    @Override
+    public List<Object> preOrder(TreeNode node) {
+        if (node == null) {
+            return new ArrayList<>();
         }
-        System.out.print(root.val + " ");
-        preorder(root.left);
-        preorder(root.right);
+        List<Object> list = new ArrayList<>();
+        list.add(node.val);
+        list.addAll(preOrder(node.left));
+        list.addAll(preOrder(node.right));
+        return list;
     }
 
-    protected void inorder(TreeNode root) {
-        if (root == null) {
-            return;
+    @Override
+    public List<Object> postOrder(TreeNode node) {
+        if (node == null) {
+            return new ArrayList<>();
         }
-        inorder(root.left);
-        System.out.print(root.val + " ");
-        inorder(root.right);
-    }
-
-    public static void main(String[] args) {
-        BinaryTree tree = new BinaryTree();
-        TreeNode root = new TreeNode(45, new TreeNode(99, new TreeNode(76, null, null), null), new TreeNode(98, null, new TreeNode(55, null, null)));
-        tree.preorder(root);
-        System.out.println("");
-        tree.postorder(root);
-        System.out.println("");
-        tree.inorder(root);
-        System.out.println("");
-
-        TreeUtils.levelorder(root);
+        List<Object> list = new ArrayList<>();
+        list.addAll(postOrder(node.left));
+        list.addAll(postOrder(node.right));
+        list.add(node.val);
+        return list;
     }
 }
