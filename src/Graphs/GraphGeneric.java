@@ -36,6 +36,38 @@ public class GraphGeneric<T> {
         }
     }
 
+    HashSet<T> vis;
+
+    public ArrayList<ArrayList<T>> bfs() {
+        vis = new HashSet<>();
+        ArrayList<ArrayList<T>> ans = new ArrayList<>();
+        map.forEach((k, v) -> {
+            if (!vis.contains(k)) {
+                ans.add(bfs((T) k));
+            }
+        });
+        return ans;
+    }
+
+    public ArrayList<T> bfs(T source) {
+        ArrayList<T> ans = new ArrayList<>();
+        Queue<T> queue = new LinkedList<>();
+        queue.add(source);
+        vis.add(source);
+        while (!queue.isEmpty()) {
+            T node = queue.poll();
+            ans.add(node);
+            map.get(node).forEach(item -> {
+                if (!vis.contains((T) item)) {
+                    vis.add((T) item);
+                    queue.add((T) item);
+                }
+
+            });
+        }
+        return ans;
+    }
+
     public ArrayList<ArrayList<T>> dfs() {
         ArrayList<ArrayList<T>> ans = new ArrayList<>();
         HashSet<T> visited = new HashSet<>();

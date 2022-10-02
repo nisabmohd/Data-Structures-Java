@@ -135,6 +135,10 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree {
         return super.height(root);
     }
 
+    public void clear() {
+        root = null;
+    }
+
     @Override
     public String toString() {
         return this.inOrder().toString();
