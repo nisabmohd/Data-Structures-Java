@@ -8,7 +8,7 @@ public class TreeMapCustom<K extends Comparable<K>, V> {
     private Node root;
     private int size = 0;
 
-    private class Node<K extends Comparable<K>, V> {
+    private class Node<K, V> {
 
         K key;
         V val;
