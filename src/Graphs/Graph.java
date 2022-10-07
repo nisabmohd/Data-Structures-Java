@@ -18,7 +18,10 @@ public class Graph {
         this.list = o.list;
     }
 
-    public void addEdge(int source, int dest) {
+    public void addEdge(Integer source, Integer dest) {
+        if (source == null || dest == null) {
+            return;
+        }
         list.get(source).add(dest);
         list.get(dest).add(source);
     }
