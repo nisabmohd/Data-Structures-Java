@@ -25,16 +25,16 @@ I have made this GitHub repository containing all the internal collection framew
 <table>  <thead>  <tr>  <th>S.NO</th>  <th>Data Structure     </th>  </tr>  </thead>  <tbody>  <tr>  <td>4.1</td>  <td><a href="https://github.com/nisabmohd/DS-Implementations/blob/master/src/Maps/HashMapCustom.java">HashMap</a></td> </tr><tr>  <td>4.2</td>  <td><a href="https://github.com/nisabmohd/DS-Implementations/blob/master/src/Maps/LinkedHashMapCustom.java">LinkedHashMap</a></td> </tr><tr>  <td>4.3</td>  <td><a href="https://github.com/nisabmohd/DS-Implementations/blob/master/src/Maps/TreeMapCustom.java">TreeMap</a></td> </tr>   </tbody>  </table>   </td><td> Hash Collision , Hashing</td>   </tr> 
 
 <tr>  <td>5</td>  <td><a href="https://github.com/nisabmohd/DS-Implementations/tree/master/src/Sets">Sets</a></td><td>
-<table>  <thead>  <tr>  <th>S.NO</th>  <th>Data Structure     </th>  </tr>  </thead>  <tbody>  <tr>  <td>5.1</td>  <td><a href="https://github.com/nisabmohd/DS-Implementations/blob/master/src/Sets/HashSetCustom.java">HashSet</a></td> </tr><tr>  <td>5.2</td>  <td><a href="https://github.com/nisabmohd/DS-Implementations/blob/master/src/Sets/LinkedHashSetCustom.java">LinkedHashSet</a></td> </tr><tr>  <td>5.3</td>  <td><a href="https://github.com/nisabmohd/DS-Implementations/blob/master/src/Sets/TreeSetCustom.java">TreeSet</a></td> </tr>   </tbody>  </table>   </td><td> Maps</td>   </tr> 
+<table>  <thead>  <tr>  <th>S.NO</th>  <th>Data Structure     </th>  </tr>  </thead>  <tbody>  <tr>  <td>5.1</td>  <td><a href="https://github.com/nisabmohd/DS-Implementations/blob/master/src/Sets/HashSetCustom.java">HashSet</a></td> </tr><tr>  <td>5.2</td>  <td><a href="https://github.com/nisabmohd/DS-Implementations/blob/master/src/Sets/LinkedHashSetCustom.java">LinkedHashSet</a></td> </tr><tr>  <td>5.3</td>  <td><a href="https://github.com/nisabmohd/DS-Implementations/blob/master/src/Sets/TreeSetCustom.java">TreeSet</a></td> </tr>   </tbody>  </table>   </td><td> Maps</td>   </tr>
 
-<tr>  <td>6</td>  <td><a href="https://github.com/nisabmohd/DS-Implementations/tree/master/src/Heaps"> Heaps</a></td>
-<td>
-<table><thead><tr><th>S.NO</th>  <th>Data Structure     </th>  </tr>  </thead>  <tbody>  <tr>  <td>6.1</td>  <td><a href="https://github.com/nisabmohd/Data-Structures/blob/master/src/Heaps/Heap.java">Heap</a></td> </tr>><tr>  <td>6.2</td>  <td><a href="https://github.com/nisabmohd/DS-Implementations/blob/master/src/Heaps/HeapUsingHeapify.java">HeapifyHeap</a>
-</td>
-</tr></tbody>  </table>   </td><td>Trees</td>   </tr> 
+<tr>  <td>6</td>  <td><a href="https://github.com/nisabmohd/DS-Implementations/tree/master/src/Heaps">Heap / Priority-Queue</a><td>
+<table>  <thead>  <tr>  <th>S.NO</th>  <th>Data Structure     </th>  </tr>  </thead>  <tbody>  <tr>  <td>6.1</td>  <td><a href="https://github.com/nisabmohd/Data-Structures/blob/master/src/Heaps/Heap.java">Heap</a></td>      </tr> 
+<tr>  <td>6.2</td>  <td><a href="https://github.com/nisabmohd/DS-Implementations/blob/master/src/Trie/Trie.java">Heap Heapify</a></td>      </tr>
+</tbody>  </table>   </td><td>
+Trees</td>    </tr>
 
 <tr>  <td>7</td>  <td><a href="https://github.com/nisabmohd/DS-Implementations/tree/master/src/Trie">Trie / Prefix-Tree</a><td>
-<table>  <thead>  <tr>  <th>S.NO</th>  <th>Data Structure     </th>  </tr>  </thead>  <tbody>  <tr>  <td>7.1</td>  <td><a href="https://github.com/nisabmohd/DS-Implementations/blob/master/src/Trie/Trie.java">Trie</a></td>      </tr>  </tbody>  </table>   </td><td>
+<table>  <thead>  <tr>  <th>S.NO</th>  <th>Data Structure     </th>  </tr>  </thead>  <tbody>  <tr>  <td>7.1</td>  <td><a href="https://github.com/nisabmohd/DS-Implementations/blob/master/src/Heaps/HeapUsingHeapify.java">Trie</a></td>      </tr>  </tbody>  </table>   </td><td>
 Trees</td>    </tr>
 
 <tr>  <td>8</td>  <td><a href="https://github.com/nisabmohd/DS-Implementations/tree/master/src/Graphs">Graphs</a><td>
