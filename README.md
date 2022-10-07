@@ -29,12 +29,12 @@ I have made this GitHub repository containing all the internal collection framew
 
 <tr>  <td>6</td>  <td><a href="https://github.com/nisabmohd/DS-Implementations/tree/master/src/Heaps">Heap / Priority-Queue</a><td>
 <table>  <thead>  <tr>  <th>S.NO</th>  <th>Data Structure     </th>  </tr>  </thead>  <tbody>  <tr>  <td>6.1</td>  <td><a href="https://github.com/nisabmohd/Data-Structures/blob/master/src/Heaps/Heap.java">Heap</a></td>      </tr> 
-<tr>  <td>6.2</td>  <td><a href="https://github.com/nisabmohd/DS-Implementations/blob/master/src/Trie/Trie.java">Heap Heapify</a></td>      </tr>
+<tr>  <td>6.2</td>  <td><a href="https://github.com/nisabmohd/DS-Implementations/blob/master/src/Heaps/HeapUsingHeapify.java">Heap Heapify</a></td>      </tr>
 </tbody>  </table>   </td><td>
 Trees</td>    </tr>
 
 <tr>  <td>7</td>  <td><a href="https://github.com/nisabmohd/DS-Implementations/tree/master/src/Trie">Trie / Prefix-Tree</a><td>
-<table>  <thead>  <tr>  <th>S.NO</th>  <th>Data Structure     </th>  </tr>  </thead>  <tbody>  <tr>  <td>7.1</td>  <td><a href="https://github.com/nisabmohd/DS-Implementations/blob/master/src/Heaps/HeapUsingHeapify.java">Trie</a></td>      </tr>  </tbody>  </table>   </td><td>
+<table>  <thead>  <tr>  <th>S.NO</th>  <th>Data Structure     </th>  </tr>  </thead>  <tbody>  <tr>  <td>7.1</td>  <td><a href="https://github.com/nisabmohd/DS-Implementations/blob/master/src/Trie/Trie.java">Trie</a></td>      </tr>  </tbody>  </table>   </td><td>
 Trees</td>    </tr>
 
 <tr>  <td>8</td>  <td><a href="https://github.com/nisabmohd/DS-Implementations/tree/master/src/Graphs">Graphs</a><td>
