@@ -9,7 +9,7 @@ public class Graph {
 
     public Graph(int size) {
         list = new ArrayList<>();
-        for (int i = 0; i <= size; i++) {
+        for (int i = 0; i < size; i++) {
             list.add(new LinkedList<>());
         }
     }
@@ -51,25 +51,34 @@ public class Graph {
     }
 
     public static List<Integer> bfs(int source, Graph o) {
+        List<Integer> result = new ArrayList<>();
+        boolean[] visited = new boolean[o.list.size()];
+        result.addAll(bfshelper(source, o, visited));
+        for (int i = 0; i < o.list.size(); i++) {
+            if (visited[i] == false) {
+                 result.addAll(bfshelper(i, o, visited));
+            }
+        }
+        return result;
+    }
+
+    private static List<Integer> bfshelper(int source, Graph o, boolean[] visited) {
         ArrayList<LinkedList<Integer>> bfslist = o.list;
         Queue<Integer> queue = new LinkedList<>();
         List<Integer> result = new ArrayList<>();
-        ArrayList<Boolean> visited = new ArrayList<>();
-        for (int i = 0; i < bfslist.size(); i++) {
-            visited.add(false);
-        }
         queue.add(source);
-        visited.set(source, true);
+        visited[source] = true;
         while (!queue.isEmpty()) {
             int node = queue.remove();
             for (int i = 0; i < bfslist.get(node).size(); i++) {
-                if (visited.get(bfslist.get(node).get(i)) == false) {
+                if (visited[bfslist.get(node).get(i)] == false) {
                     queue.add(bfslist.get(node).get(i));
-                    visited.set(bfslist.get(node).get(i), true);
+                    visited[bfslist.get(node).get(i)] = true;
                 }
             }
             result.add(node);
         }
+//        System.out.println(result);
         return result;
     }
 
