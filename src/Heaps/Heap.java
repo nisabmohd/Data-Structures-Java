@@ -16,7 +16,7 @@ public class Heap<T extends Comparable<T>> {
     }
 
     // Default as maxheap
-        // pass Comparator for max Heap
+        // pass Comparator for min Heap
     // pass  Comparator.reverseOrder() for min heap
     public Heap(Comparator<T> comparator) {
         this.comparator = comparator;
