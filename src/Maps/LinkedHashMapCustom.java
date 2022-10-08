@@ -27,7 +27,7 @@ public class LinkedHashMapCustom<K, V> {
     }
 
     private int hashCode(K key) {
-        return key.toString().length() > 13 ? key.toString().length() % DEFAULT_CAPACITY : key.toString().length() % DEFAULT_CAPACITY % 10;
+        return key.hashCode()%bucket.length;
     }
 
     public boolean put(K key, V val) {
