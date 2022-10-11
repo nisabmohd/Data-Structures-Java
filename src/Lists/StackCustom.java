@@ -59,17 +59,17 @@ public class StackCustom<T> {
 
     @Override
     public String toString() {
-        String ret = "[";
+        StringBuilder ret = new StringBuilder("[");
         int i = 0;
         for (; i < top; i++) {
-            ret += arr[i] + ",";
+            ret.append(arr[i] + ",");
         }
         if (arr[i] != null) {
-            ret += arr[i] + "]";
+            ret.append(arr[i] + "]");
         } else {
-            ret += "]";
+            ret.append("]");
         }
-        return ret;
+        return ret.toString();
     }
 
 }

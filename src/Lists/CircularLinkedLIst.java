@@ -68,7 +68,7 @@ public class CircularLinkedLIst<T> {
         if (index == 0) {
             T retval = (T) head.val;
             head = head.next;
-            tail.next=head;
+            tail.next = head;
             size--;
             return retval;
         }
@@ -110,16 +110,17 @@ public class CircularLinkedLIst<T> {
 
     @Override
     public String toString() {
-        String ret = "[ ";
+        StringBuilder ret = new StringBuilder("[");
         Node temp = head;
         if (temp == null) {
-            return ret + "]";
+            return ret.append("]").toString();
         }
         do {
-            ret += temp.val + " ";
+            ret.append(temp.val + ",");
             temp = temp.next;
         } while (temp != head);
-        return ret + "]";
+        String t = ret.substring(0, ret.length() - 1);
+        return new StringBuilder(t).append("]").toString();
     }
 
 }

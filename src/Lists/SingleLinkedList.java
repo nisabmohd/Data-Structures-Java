@@ -131,18 +131,18 @@ public class SingleLinkedList<T> implements Cloneable {
 
     @Override
     public String toString() {
-        String ret = "[";
+        StringBuilder ret = new StringBuilder("[");
         Node temp = root;
         if (temp == null) {
-            ret += "]";
-            return ret;
+            ret.append("]");
+            return ret.toString();
         }
         while (temp.next != null) {
-            ret += temp.val + ",";
+            ret.append(temp.val + ",");
             temp = temp.next;
         }
-        ret += temp.val + "]";
-        return ret;
+        ret.append(temp.val + "]");
+        return ret.toString();
     }
 
     @Override
