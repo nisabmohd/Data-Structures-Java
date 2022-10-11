@@ -27,46 +27,41 @@ public class LinkedHashMapCustom<K, V> {
     }
 
     private int hashCode(K key) {
-        return key.hashCode()%bucket.length;
+        return key.hashCode() % bucket.length;
     }
 
     public boolean put(K key, V val) {
-
         int hash = hashCode(key);
-        Entry t = new Entry(key, val, null, null, previous);
-        if (bucket[hash] == null) {
-            bucket[hash] = t;
+        if (root == null) {
+            root = new Entry<>(key, val, null, null, null);
+            previous = root;
+            bucket[hash] = root;
             size++;
-        } else {
-            Entry temp = bucket[hash];
-            if (temp.next == null) {
-                if (temp.key.equals(key)) {
-                    temp.val = val;
-                    return true;
-                }
-            }
-            while (temp.next != null) {
-                if (temp.key.equals(key)) {
-                    temp.val = val;
-                    return true;
-                }
-                temp = temp.next;
-            }
+            return true;
+        }
+        Entry<K, V> temp = bucket[hash];
+        if (temp == null) {
+            bucket[hash] = new Entry<>(key, val, null, null, previous);
+            previous.after = bucket[hash];
+            previous = bucket[hash];
+            size++;
+            return true;
+        }
+        while (temp.next != null) {
             if (temp.key.equals(key)) {
                 temp.val = val;
                 return true;
             }
-            temp.next = t;
-            t.before = previous;
-            size++;
+            temp = temp.next;
         }
-        if (previous != null) {
-            previous.after = t;
+        if (temp.key.equals(key)) {
+            temp.val = val;
+            return true;
         }
-        previous = t;
-        if (root == null) {
-            root = t;
-        }
+        temp.next = new Entry<>(key, val, null, null, previous);
+        previous.after = temp.next;
+        previous = temp.next;
+        size++;
         return true;
     }
 
@@ -165,14 +160,15 @@ public class LinkedHashMapCustom<K, V> {
 
     @Override
     public String toString() {
-        String ret = "{ ";
-        Entry temp = root;
+        Entry<K, V> temp = root;
+        StringBuilder builder = new StringBuilder("{");
         while (temp != null) {
-            ret += temp.key + "=" + temp.val + " ";
+            builder.append(temp.key + "=" + temp.val + ",");
             temp = temp.after;
         }
-        ret += "}";
-        return ret;
+        if(builder.length()==1) builder.append(" ");
+        String t = builder.substring(0, builder.length() - 1);
+        return new StringBuilder(t).append("}").toString();
     }
 
     public int size() {

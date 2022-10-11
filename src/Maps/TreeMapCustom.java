@@ -84,15 +84,18 @@ public class TreeMapCustom<K extends Comparable<K>, V> {
         return get(key, node.left);
     }
 
-    boolean that=false;
+    boolean that = false;
+
     public V remove(K key) {
         V val = get(key);
         if (val == null) {
             return null;
         }
-        that=false;
+        that = false;
         root = remove(key, root);
-        if(that ) size++;
+        if (that) {
+            size++;
+        }
         return val;
     }
 
@@ -115,8 +118,8 @@ public class TreeMapCustom<K extends Comparable<K>, V> {
                 size--;
                 return node.left;
             } else {
-               size--;
-               that=true;
+                size--;
+                that = true;
                 Node minKey = getMin(node.right);
                 node.right = remove((K) minKey.key, node.right);
                 node.key = minKey.key;
@@ -143,18 +146,19 @@ public class TreeMapCustom<K extends Comparable<K>, V> {
             return;
         }
         display(node.left, helper);
-        helper.append(node.key + "=" + node.val + " ");
+        helper.append(node.key + "=" + node.val + ",");
         display(node.right, helper);
     }
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder("[ ");
+        StringBuilder builder = new StringBuilder("{");
         StringBuilder temp = new StringBuilder();
         display(root, temp);
         builder.append(temp);
-        builder.append("]");
-        return builder.toString();
+        if(builder.length()==1) builder.append(" ");
+        String t = builder.substring(0, builder.length() - 1);
+        return (new StringBuilder(t)).append("}").toString();
     }
 
     public ArrayList<K> toKeyArray() {
