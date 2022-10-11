@@ -16,7 +16,7 @@ public class GraphGeneric<T> {
             map.put(start, new ArrayList<>());
             return;
         }
-        if (end == null && start != null) {
+        if (start == null && end != null) {
             map.put(end, new ArrayList<>());
             return;
         }
