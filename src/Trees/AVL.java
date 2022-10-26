@@ -104,18 +104,4 @@ public class AVL {
         return inOrder().toString();
     }
 
-    public void display() {
-        display(root);
-    }
-
-    private void display(AVLNode node) {
-        if (node == null) {
-            System.out.print(null + " ");
-            return;
-        }
-        System.out.print(node.val + " ");
-        display(node.left);
-        display(node.right);
-    }
-
 }
