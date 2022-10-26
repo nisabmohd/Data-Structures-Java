@@ -43,25 +43,69 @@ public class AVL {
         } else {
             return root;
         }
-        root.height = 1 + Math.max(getHeight(root.left), getHeight(root.right));
-        int balanceFactor = getBalanceFactor(root);
+        return balance(root, val);
+    }
+
+    public void remove(int val) {
+        root = delete(val, root);
+    }
+
+    private int getMin(AVLNode node) {
+        if (node.left == null) {
+            return node.val;
+        }
+        return getMin(node.left);
+    }
+
+    public int getMin() {
+        return getMin(root);
+    }
+
+    private AVLNode delete(int val, AVLNode node) {
+        if (node == null) {
+            return null;
+        }
+        if (node.val > val) {
+            node.left = delete(val, node.left);
+        } else if (node.val < val) {
+            node.right = delete(val, node.right);
+        } else {
+            if (node.left == null && node.right != null) {
+                return node.right;
+            } else if (node.left != null && node.right == null) {
+                return node.left;
+            } else if (node.left != null && node.right != null) {
+                int min = getMin(node.right);
+                node.val = min;
+                node.right = delete(min, node.right);
+                return node;
+            } else {
+                return null;
+            }
+        }
+        return balance(node, val);
+    }
+
+    private AVLNode balance(AVLNode node, int val) {
+        node.height = 1 + Math.max(getHeight(node.left), getHeight(node.right));
+        int balanceFactor = getBalanceFactor(node);
         if (balanceFactor > 1) {
-            if (val < root.left.val) {
-                return rightRotate(root);
-            } else if (val > root.left.val) {
-                root.left = leftRotate(root.left);
-                return rightRotate(root);
+            if (val < node.left.val) {
+                return rightRotate(node);
+            } else if (val > node.left.val) {
+                node.left = leftRotate(node.left);
+                return rightRotate(node);
             }
         }
         if (balanceFactor < -1) {
-            if (val > root.right.val) {
-                return leftRotate(root);
-            } else if (val < root.right.val) {
-                root.right = rightRotate(root.right);
-                return leftRotate(root);
+            if (val > node.right.val) {
+                return leftRotate(node);
+            } else if (val < node.right.val) {
+                node.right = rightRotate(node.right);
+                return leftRotate(node);
             }
         }
-        return root;
+        return node;
     }
 
     private AVLNode leftRotate(AVLNode node) {
@@ -102,6 +146,20 @@ public class AVL {
     @Override
     public String toString() {
         return inOrder().toString();
+    }
+
+    public void display() {
+        display(root);
+    }
+
+    private void display(AVLNode node) {
+        if (node == null) {
+            System.out.print(null + " ");
+            return;
+        }
+        System.out.print(node.val + " ");
+        display(node.left);
+        display(node.right);
     }
 
 }
