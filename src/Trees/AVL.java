@@ -1,73 +1,59 @@
 package Trees;
 
 import java.util.*;
+import static Trees.BTree.TreeNode;
 
-public class AVL {
+public class AVL<T extends Comparable<T>> extends BinarySearchTree<T> {
 
-    private class AVLNode {
+    // heights of nodes are stored
+    Map<TreeNode<T>, Integer> map;
 
-        int val;
-        int height;
-        AVLNode left, right;
+    private TreeNode<T> root;
 
-        public AVLNode(int val) {
-            this.val = val;
-            this.height = 1;
-        }
-
+    public AVL() {
+        map = new HashMap<>();
     }
-    private AVLNode root;
 
-    public void add(int val) {
+    @Override
+    public void add(T val) {
         root = add(val, root);
     }
 
-    private int getHeight(AVLNode node) {
-        return node == null ? 0 : node.height;
+    private int getHeight(TreeNode node) {
+        return map.getOrDefault(node, 0);
     }
 
-    private int getBalanceFactor(AVLNode node) {
+    private int getBalanceFactor(TreeNode node) {
         if (node == null) {
             return 0;
         }
         return getHeight(node.left) - getHeight(node.right);
     }
 
-    private AVLNode add(int val, AVLNode root) {
-        if (root == null) {
-            return new AVLNode(val);
-        } else if (root.val > val) {
-            root.left = add(val, root.left);
-        } else if (root.val < val) {
-            root.right = add(val, root.right);
-        } else {
-            return root;
-        }
-        return balance(root, val);
-    }
-
-    public void remove(int val) {
+    @Override
+    public void remove(T val) {
         root = delete(val, root);
     }
 
-    private int getMin(AVLNode node) {
+    private T getMin(TreeNode<T> node) {
         if (node.left == null) {
             return node.val;
         }
-        return getMin(node.left);
+        return (T) getMin(node.left);
     }
 
-    public int getMin() {
+    @Override
+    public T getMin() {
         return getMin(root);
     }
 
-    private AVLNode delete(int val, AVLNode node) {
+    private TreeNode<T> delete(T val, TreeNode<T> node) {
         if (node == null) {
             return null;
         }
-        if (node.val > val) {
+        if (node.val.compareTo(val) > 0) {
             node.left = delete(val, node.left);
-        } else if (node.val < val) {
+        } else if (node.val.compareTo(val) < 0) {
             node.right = delete(val, node.right);
         } else {
             if (node.left == null && node.right != null) {
@@ -75,7 +61,7 @@ public class AVL {
             } else if (node.left != null && node.right == null) {
                 return node.left;
             } else if (node.left != null && node.right != null) {
-                int min = getMin(node.right);
+                T min = (T) getMin(node.right);
                 node.val = min;
                 node.right = delete(min, node.right);
                 return node;
@@ -86,21 +72,36 @@ public class AVL {
         return balance(node, val);
     }
 
-    private AVLNode balance(AVLNode node, int val) {
-        node.height = 1 + Math.max(getHeight(node.left), getHeight(node.right));
+    private TreeNode<T> add(T val, TreeNode< T> root) {
+        if (root == null) {
+            TreeNode<T> temp = new TreeNode(val);
+            map.put(temp, 1);
+            return temp;
+        } else if (root.compareTo(val) > 0) {
+            root.left = add(val, root.left);
+        } else if (root.compareTo(val) < 0) {
+            root.right = add(val, root.right);
+        } else {
+            return root;
+        }
+        return balance(root, val);
+    }
+
+    private TreeNode<T> balance(TreeNode<T> node, T val) {
+        map.put(node, 1 + Math.max(getHeight(node.left), getHeight(node.right)));
         int balanceFactor = getBalanceFactor(node);
         if (balanceFactor > 1) {
-            if (val < node.left.val) {
+            if (node.compareTo(val) > 0) {
                 return rightRotate(node);
-            } else if (val > node.left.val) {
+            } else if (node.compareTo(val) < 0) {
                 node.left = leftRotate(node.left);
                 return rightRotate(node);
             }
         }
         if (balanceFactor < -1) {
-            if (val > node.right.val) {
+            if (node.compareTo(val) < 0) {
                 return leftRotate(node);
-            } else if (val < node.right.val) {
+            } else if (node.compareTo(val) > 0) {
                 node.right = rightRotate(node.right);
                 return leftRotate(node);
             }
@@ -108,39 +109,95 @@ public class AVL {
         return node;
     }
 
-    private AVLNode leftRotate(AVLNode node) {
-        AVLNode temp = node.right;
-        AVLNode x = temp.left;
+    private TreeNode<T> leftRotate(TreeNode<T> node) {
+        TreeNode<T> temp = node.right;
+        TreeNode<T> x = temp.left;
         temp.left = node;
         node.right = x;
-        temp.height = 1 + Math.max(getHeight(temp.left), getHeight(temp.right));
-        node.height = 1 + Math.max(getHeight(node.left), getHeight(node.right));
+        map.put(temp, 1 + Math.max(getHeight(temp.left), getHeight(temp.right)));
+        map.put(node, 1 + Math.max(getHeight(node.left), getHeight(node.right)));
         return temp;
     }
 
-    private AVLNode rightRotate(AVLNode node) {
-        AVLNode temp = node.left;
-        AVLNode y = temp.right;
+    private TreeNode<T> rightRotate(TreeNode<T> node) {
+        TreeNode<T> temp = node.left;
+        TreeNode<T> y = temp.right;
         temp.right = node;
         node.left = y;
-        temp.height = 1 + Math.max(getHeight(temp.left), getHeight(temp.right));
-        node.height = 1 + Math.max(getHeight(node.left), getHeight(node.right));
+        map.put(temp, 1 + Math.max(getHeight(temp.left), getHeight(temp.right)));
+        map.put(node, 1 + Math.max(getHeight(node.left), getHeight(node.right)));
         return temp;
     }
 
-    public List<Object> inOrder() {
-        return inOrder(root);
+    @Override
+    public boolean contains(T val) {
+        return contains(val, root);
     }
 
-    private List<Object> inOrder(AVLNode node) {
+    private boolean contains(T val, TreeNode node) {
         if (node == null) {
-            return new ArrayList<>();
+            return false;
         }
-        List<Object> ans = new ArrayList<>();
-        ans.addAll(inOrder(node.left));
-        ans.add(node.val);
-        ans.addAll(inOrder(node.right));
-        return ans;
+        if (node.compareTo(val) == 0) {
+            return true;
+        }
+        return contains(val, node.left) || contains(val, node.right);
+    }
+
+    @Override
+    public List<Object> inOrder() {
+        return super.inOrder(root);
+    }
+
+    @Override
+    public List<Object> preOrder() {
+        return super.preOrder(root);
+    }
+
+    @Override
+    public List<Object> postOrder() {
+        return super.postOrder(root);
+    }
+
+    @Override
+    public List<List<Object>> levelOrder() {
+        return super.levelOrder(root);
+    }
+
+    @Override
+    public List<Object> leftView() {
+        return super.leftView(root);
+    }
+
+    @Override
+    public List<Object> rightView() {
+        return super.rightView(root);
+    }
+
+    @Override
+    public List<Object> topView() {
+        return super.topView(root);
+    }
+
+    @Override
+    public List<Object> botttomView() {
+        return super.botttomView(root);
+    }
+
+    @Override
+    public int height() {
+        return super.height(root);
+    }
+
+    @Override
+    public int size() {
+        return map.size();
+    }
+
+    @Override
+    public void clear() {
+        root = null;
+        map.clear();
     }
 
     @Override
