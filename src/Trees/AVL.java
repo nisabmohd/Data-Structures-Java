@@ -61,6 +61,7 @@ public class AVL<T extends Comparable<T>> extends BinarySearchTree<T> {
             } else if (node.left != null && node.right == null) {
                 return node.left;
             } else if (node.left != null && node.right != null) {
+                map.remove(node);
                 T min = (T) getMin(node.right);
                 node.val = min;
                 node.right = delete(min, node.right);
