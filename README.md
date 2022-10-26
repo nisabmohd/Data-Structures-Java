@@ -21,7 +21,7 @@ I have made this GitHub repository containing all the internal collection framew
 <tr>  <td>3</td>  <td><a href="https://github.com/nisabmohd/DS-Implementations/tree/master/src/Trees">Trees</a><td>
 <table>  <thead>  <tr>  <th>S.NO</th>  <th>Data Structure     </th>  </tr>  </thead>  <tbody>  <tr>  <td>3.1</td>  <td><a href="https://github.com/nisabmohd/DS-Implementations/blob/master/src/Trees/BinaryTree.java">BinaryTree</a></td> </tr><tr>  <td>3.2</td>  <td><a href="https://github.com/nisabmohd/Data-Structures/blob/master/src/Trees/BinarySearchTree.java">BinarySearchTree</a></td> </tr><tr>  <td>3.3</td>  <td><a href="https://github.com/nisabmohd/DS-Implementations/blob/master/src/Trees/N_ary.java">N_Arry Tree</a></td> 
 </tr> 
-tr>  <td>3.4</td>  <td><a href="https://github.com/nisabmohd/Data-Structures/blob/master/src/Trees/AVL.java">AVL Tree</a></td> 
+ <td>3.4</td>  <td><a href="https://github.com/nisabmohd/Data-Structures/blob/master/src/Trees/AVL.java">AVL Tree</a></td> 
 </tr>
  </tbody>  </table>   </td><td><a href="https://github.com/nisabmohd/Data-Structures/blob/master/src/Trees/BTree.java">BTree</a></td> </tr>
 
