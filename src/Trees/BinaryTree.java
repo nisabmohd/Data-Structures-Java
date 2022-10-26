@@ -5,7 +5,7 @@ import java.util.*;
 public class BinaryTree implements BTree {
 
     @Override
-    public List<Object> inOrder(TreeNode node) {
+    public  List<Object> inOrder(TreeNode node) {
         if (node == null) {
             return new ArrayList<>();
         }
