@@ -30,7 +30,7 @@ public class AVL {
         if (node == null) {
             return 0;
         }
-        return getHeight(node.left) - getHeight(node.left);
+        return getHeight(node.left) - getHeight(node.right);
     }
 
     private AVLNode add(int val, AVLNode root) {
@@ -45,23 +45,21 @@ public class AVL {
         }
         root.height = 1 + Math.max(getHeight(root.left), getHeight(root.right));
         int balanceFactor = getBalanceFactor(root);
-        // Left  Left Rotation
-        if (balanceFactor > 1 && root.left.val > val) {
-            root = leftRotate(root);
+        if (balanceFactor > 1) {
+            if (val < root.left.val) {
+                return rightRotate(root);
+            } else if (val > root.left.val) {
+                root.left = leftRotate(root.left);
+                return rightRotate(root);
+            }
         }
-        // Right  Right Rotation
-        if (balanceFactor < -1 && root.right.val < val) {
-            root = rightRotate(root);
-        }
-        // Left  Right Rotation
-        if (balanceFactor > 1 && root.left.val < val) {
-            root.left = leftRotate(root.left);
-            root = rightRotate(root);
-        }
-        // Right  Left Rotation
-        if (balanceFactor < -1 && root.right.val > val) {
-            root.right = rightRotate(root.right);
-            root = leftRotate(root);
+        if (balanceFactor < -1) {
+            if (val > root.right.val) {
+                return leftRotate(root);
+            } else if (val < root.right.val) {
+                root.right = rightRotate(root.right);
+                return leftRotate(root);
+            }
         }
         return root;
     }
@@ -104,6 +102,20 @@ public class AVL {
     @Override
     public String toString() {
         return inOrder().toString();
+    }
+
+    public void display() {
+        display(root);
+    }
+
+    private void display(AVLNode node) {
+        if (node == null) {
+            System.out.print(null + " ");
+            return;
+        }
+        System.out.print(node.val + " ");
+        display(node.left);
+        display(node.right);
     }
 
 }
