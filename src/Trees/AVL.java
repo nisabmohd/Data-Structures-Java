@@ -6,7 +6,7 @@ import static Trees.BTree.TreeNode;
 public class AVL<T extends Comparable<T>> extends BinarySearchTree<T> {
 
     // heights of nodes are stored
-    Map<TreeNode<T>, Integer> map;
+    private Map<TreeNode<T>, Integer> map;
 
     private TreeNode<T> root;
 
