@@ -123,6 +123,7 @@ public class HashMapCustom<K, V> {
         }
     }
 
+    // forEach method takes BiConsumer<K,V>
     public void forEach(BiConsumer<K, V> o) {
         Objects.requireNonNull(o);
         for (int i = 0; i < bucket.length; i++) {

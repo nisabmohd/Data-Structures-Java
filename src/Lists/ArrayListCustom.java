@@ -112,6 +112,7 @@ public class ArrayListCustom<T> implements Cloneable {
         return builder.append("]").toString();
     }
 
+    // forEach method takes Consumer<T>
     public void forEach(Consumer<T> o) {
         Objects.requireNonNull(o);
         for (int i = 0; i < size; i++) {
