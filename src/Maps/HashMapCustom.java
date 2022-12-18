@@ -2,6 +2,9 @@ package Maps;
 //check out my medium blog for hashmap
 //https://medium.com/@nisabmohd/hashmap-in-java-c010dec8fbd0
 
+import java.util.Objects;
+import java.util.function.BiConsumer;
+
 public class HashMapCustom<K, V> {
 
     private final int DEFAULT_CAPACITY = 17;
@@ -120,6 +123,17 @@ public class HashMapCustom<K, V> {
         }
     }
 
+    public void forEach(BiConsumer<K, V> o) {
+        Objects.requireNonNull(o);
+        for (int i = 0; i < bucket.length; i++) {
+            Entry temp = bucket[i];
+            while (temp != null) {
+                o.accept((K) temp.key, (V) temp.val);
+                temp = temp.next;
+            }
+        }
+    }
+
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder("{");
@@ -130,7 +144,7 @@ public class HashMapCustom<K, V> {
                 temp = temp.next;
             }
         }
-        if(builder.length()==1) builder.append(" ");
+        if (builder.length() == 1) builder.append(" ");
         String t = builder.substring(0, builder.length() - 1);
         return (new StringBuilder(t)).append("}").toString();
     }

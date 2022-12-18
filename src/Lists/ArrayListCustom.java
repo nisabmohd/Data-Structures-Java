@@ -1,6 +1,7 @@
 package Lists;
 
 import java.util.*;
+import java.util.function.Consumer;
 
 public class ArrayListCustom<T> implements Cloneable {
 
@@ -109,6 +110,13 @@ public class ArrayListCustom<T> implements Cloneable {
         }
         builder.append((T) arr[i]);
         return builder.append("]").toString();
+    }
+
+    public void forEach(Consumer<T> o) {
+        Objects.requireNonNull(o);
+        for (int i = 0; i < size; i++) {
+            o.accept((T) arr[i]);
+        }
     }
 
     public Object[] toArray() {
