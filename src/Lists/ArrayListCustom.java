@@ -2,6 +2,8 @@ package Lists;
 
 import java.util.*;
 import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 public class ArrayListCustom<T> implements Cloneable {
 
@@ -118,6 +120,16 @@ public class ArrayListCustom<T> implements Cloneable {
         for (int i = 0; i < size; i++) {
             o.accept((T) arr[i]);
         }
+    }
+
+    public ArrayListCustom<T> filter(Predicate<T> o) {
+        ArrayListCustom<T> newList = new ArrayListCustom<>();
+        this.forEach((item) -> {
+            if (o.test(item)) {
+                newList.add(item);
+            }
+        });
+        return newList;
     }
 
     public Object[] toArray() {
