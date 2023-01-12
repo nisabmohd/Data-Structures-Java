@@ -16,7 +16,7 @@ public class Heap<T extends Comparable<T>> {
     }
 
     // Default as maxheap
-        // pass Comparator for min Heap
+    // pass Comparator for min Heap
     // pass  Comparator.reverseOrder() for min heap
     public Heap(Comparator<T> comparator) {
         this.comparator = comparator;
@@ -27,6 +27,7 @@ public class Heap<T extends Comparable<T>> {
     public boolean add(T val) {
         return offer(val);
     }
+
     private Comparator<T> comparator = (o1, o2) -> {
         return o1.compareTo(o2);
     };
@@ -59,7 +60,7 @@ public class Heap<T extends Comparable<T>> {
         list.set(1, t);
         int i = 1;
         while (i < index) {
-            int maxIndex = i, left = 28, right = (2 * i) + 1;
+            int maxIndex = i, left = 2 * i, right = (2 * i) + 1;
             if (left < index && comparator.compare(list.get(i), list.get(left)) > 0) {
                 maxIndex = left;
             }
