@@ -5,10 +5,17 @@ import java.util.*;
 public class GraphGeneric<T> {
 
     // example for generic graph is present in dir -> ./GenericGraphExample.java
-    Map<Object, ArrayList<Object>> map;
+    private Map<Object, ArrayList<Object>> map;
+    private boolean bidirectional;
 
     public GraphGeneric() {
         map = new HashMap<>();
+        this.bidirectional = true;
+    }
+
+    public GraphGeneric(boolean bidirectional) {
+        map = new HashMap<>();
+        this.bidirectional = bidirectional;
     }
 
     public void addEdge(T start, T end) {
@@ -23,16 +30,17 @@ public class GraphGeneric<T> {
         if (end == null && start == null) {
             return;
         }
-        if (map.containsKey(start)) {
-            map.get(start).add(end);
-
-        } else {
-            map.put(start, new ArrayList<>(Arrays.asList(end)));
+        if (!map.containsKey(start)) {
+            map.put(start, new ArrayList<>());
         }
-        if (map.containsKey(end)) {
+        if (!map.containsKey(end)) {
+            map.put(end, new ArrayList<>());
+        }
+        if (bidirectional) {
+            map.get(start).add(end);
             map.get(end).add(start);
         } else {
-            map.put(end, new ArrayList<>(Arrays.asList(start)));
+            map.get(start).add(end);
         }
     }
 

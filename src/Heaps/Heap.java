@@ -99,10 +99,13 @@ public class Heap<T extends Comparable<T>> {
 
     @Override
     public String toString() {
-        StringBuilder ans = new StringBuilder("[ ");
-        for (int i = 1; i <= index; i++) {
-            ans.append(list.get(i) + " ");
+        StringBuilder ans = new StringBuilder("[");
+        if (list.size() == 1) return ans.append("]").toString();
+        int i;
+        for (i = 1; i < index; i++) {
+            ans.append(list.get(i) + ", ");
         }
+        ans.append(list.get(i));
         return ans.append("]").toString();
     }
 }
