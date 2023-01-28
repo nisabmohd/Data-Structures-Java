@@ -4,7 +4,6 @@ import java.util.*;
 
 public class GraphGeneric<T> {
 
-    // example for generic graph is present in dir -> ./GenericGraphExample.java
     private Map<Object, ArrayList<Object>> map;
     private boolean bidirectional;
 
@@ -44,20 +43,28 @@ public class GraphGeneric<T> {
         }
     }
 
-    HashSet<T> vis;
 
-    public ArrayList<ArrayList<T>> bfs() {
+    public List<List<T>> bfs() {
+        HashSet<T> vis;
         vis = new HashSet<>();
-        ArrayList<ArrayList<T>> ans = new ArrayList<>();
+        List<List<T>> ans = new ArrayList<>();
         map.forEach((k, v) -> {
             if (!vis.contains(k)) {
-                ans.add(bfs((T) k));
+                ans.add(bfs((T) k, vis));
             }
         });
         return ans;
     }
 
-    public ArrayList<T> bfs(T source) {
+    public List<T> bfs(T source) {
+        if (!map.containsKey(source)) {
+            return new ArrayList<>();
+        }
+        HashSet<T> vis = new HashSet<>();
+        return this.bfs(source, vis);
+    }
+
+    private List<T> bfs(T source, HashSet<T> vis) {
         ArrayList<T> ans = new ArrayList<>();
         Queue<T> queue = new LinkedList<>();
         queue.add(source);
@@ -76,26 +83,27 @@ public class GraphGeneric<T> {
         return ans;
     }
 
-    public ArrayList<ArrayList<T>> dfs() {
-        ArrayList<ArrayList<T>> ans = new ArrayList<>();
+    public List<List<T>> dfs() {
+        List<List<T>> ans = new ArrayList<>();
         HashSet<T> visited = new HashSet<>();
         map.forEach((k, v) -> {
             if (!visited.contains(k)) {
                 ans.add(this.dfs((T) k, visited));
             }
         });
-
         return ans;
     }
 
-    public ArrayList<T> dfs(T source) { // return only a component of graph containing that source in it
+    // return only a component of graph containing that source in it
+    public List<T> dfs(T source) {
         if (!map.containsKey(source)) {
             return new ArrayList<>();
         }
+        HashSet<T> vis = new HashSet<>();
         return this.dfs(source, new HashSet<>());
     }
 
-    private ArrayList<T> dfs(T s, HashSet<T> visited) {
+    private List<T> dfs(T s, HashSet<T> visited) {
         ArrayList<T> ret = new ArrayList<>();
         ret.add(s);
         visited.add(s);
@@ -107,7 +115,7 @@ public class GraphGeneric<T> {
         return ret;
     }
 
-    @Override // returns adjacency map 
+    @Override // returns adjacency map
     public String toString() {
         return map.toString();
     }

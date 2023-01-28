@@ -10,12 +10,12 @@ public class Heap<T extends Comparable<T>> {
 
     private int size = 0;
 
+    // Default as maxheap
     public Heap() {
         list.add(null);
         index = 0;
     }
 
-    // Default as maxheap
     // pass Comparator for min Heap
     // pass  Comparator.reverseOrder() for min heap
     public Heap(Comparator<T> comparator) {
@@ -59,25 +59,21 @@ public class Heap<T extends Comparable<T>> {
         T t = list.get(index);
         list.set(1, t);
         int i = 1;
-        while (i < index) {
+        while (i < index - 1) {
             int maxIndex = i, left = 2 * i, right = (2 * i) + 1;
-            if (left < index && comparator.compare(list.get(i), list.get(left)) > 0) {
+            if (left < index && comparator.compare(list.get(maxIndex), list.get(left)) < 0)
                 maxIndex = left;
-            }
-            if (right < index && comparator.compare(list.get(i), list.get(right)) > 0) {
+            if (right < index && comparator.compare(list.get(maxIndex), list.get(right)) < 0)
                 maxIndex = right;
-            }
             if (maxIndex != i) {
                 t = list.get(i);
                 list.set(i, list.get(maxIndex));
                 list.set(maxIndex, t);
                 i = maxIndex;
-            } else {
-                break;
-            }
-
+            } else break;
         }
         index--;
+        size--;
         return deleted;
     }
 
@@ -95,6 +91,10 @@ public class Heap<T extends Comparable<T>> {
     public void clear() {
         list.clear();
         index = 0;
+    }
+
+    public boolean isEmpty() {
+        return index == 0;
     }
 
     @Override
