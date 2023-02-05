@@ -78,7 +78,6 @@ public class Graph {
             }
             result.add(node);
         }
-//        System.out.println(result);
         return result;
     }
 
