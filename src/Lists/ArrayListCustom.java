@@ -132,7 +132,6 @@ public class ArrayListCustom<T> implements Cloneable {
         return newList;
     }
 
-    //hh
     private class ArrayListItr<T> implements Iterator<T> {
         int cursor = 0;
 
