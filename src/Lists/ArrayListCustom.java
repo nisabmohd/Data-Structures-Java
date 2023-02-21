@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
-public class ArrayListCustom<T> implements Cloneable {
+public class ArrayListCustom<T> implements Cloneable,Iterable<T> {
 
     private final int DEFAULT_CAPACITY = 7;
     private int size = 0;
@@ -114,7 +114,7 @@ public class ArrayListCustom<T> implements Cloneable {
     }
 
     // forEach method takes Consumer<T>
-    public void forEach(Consumer<T> o) {
+    public void forEach(Consumer<? super T> o) {
         Objects.requireNonNull(o);
         for (int i = 0; i < size; i++) {
             o.accept((T) arr[i]);
@@ -126,6 +126,11 @@ public class ArrayListCustom<T> implements Cloneable {
         ArrayListCustom<T> newList = new ArrayListCustom<>();
         this.forEach(o::test);
         return newList;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new ArrayListItr<>();
     }
 
     private class ArrayListItr<T> implements Iterator<T> {
