@@ -124,11 +124,7 @@ public class ArrayListCustom<T> implements Cloneable {
     public ArrayListCustom<T> filter(Predicate<T> o) {
         Objects.requireNonNull((o));
         ArrayListCustom<T> newList = new ArrayListCustom<>();
-        this.forEach((item) -> {
-            if (o.test(item)) {
-                newList.add(item);
-            }
-        });
+        this.forEach(o::test);
         return newList;
     }
 

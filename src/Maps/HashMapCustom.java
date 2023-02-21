@@ -32,6 +32,10 @@ public class HashMapCustom<K, V> {
             return this.val;
         }
 
+        @Override
+        public String toString() {
+            return "{ "+key+" = "+val+" }";
+        }
     }
 
     private int hashCode(K key) {
@@ -189,9 +193,7 @@ public class HashMapCustom<K, V> {
 
     public Set<Entry<K, V>> entrySet() {
         Set<Entry<K, V>> set = new HashSet<>();
-        forEachEntry(entry -> {
-            set.add(entry);
-        });
+        forEachEntry(set::add);
         return set;
     }
 
