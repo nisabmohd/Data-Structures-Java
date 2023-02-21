@@ -2,8 +2,9 @@ package Maps;
 //check out my medium blog for hashmap
 //https://medium.com/@nisabmohd/hashmap-in-java-c010dec8fbd0
 
-import java.util.Objects;
+import java.util.*;
 import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 public class HashMapCustom<K, V> {
 
@@ -11,16 +12,24 @@ public class HashMapCustom<K, V> {
     private final Entry[] bucket = new Entry[DEFAULT_CAPACITY];
     private int size = 0;
 
-    private class Entry<K, V> {
+    public class Entry<K, V> {
 
-        K key;
-        V val;
-        Entry next;
+        private K key;
+        private V val;
+        private Entry next;
 
         public Entry(K key, V val, Entry next) {
             this.key = key;
             this.val = val;
             this.next = next;
+        }
+
+        public K getKey() {
+            return this.key;
+        }
+
+        public V getValue() {
+            return this.val;
         }
 
     }
@@ -135,6 +144,17 @@ public class HashMapCustom<K, V> {
         }
     }
 
+    public void forEachEntry(Consumer<Entry<K, V>> o) {
+        Objects.requireNonNull(o);
+        for (int i = 0; i < bucket.length; i++) {
+            Entry temp = bucket[i];
+            while (temp != null) {
+                o.accept(temp);
+                temp = temp.next;
+            }
+        }
+    }
+
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder("{");
@@ -165,6 +185,14 @@ public class HashMapCustom<K, V> {
             }
         }
         return t;
+    }
+
+    public Set<Entry<K, V>> entrySet() {
+        Set<Entry<K, V>> set = new HashSet<>();
+        forEachEntry(entry -> {
+            set.add(entry);
+        });
+        return set;
     }
 
 }

@@ -2,7 +2,6 @@ package Lists;
 
 import java.util.*;
 import java.util.function.Consumer;
-import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class ArrayListCustom<T> implements Cloneable {
@@ -123,6 +122,7 @@ public class ArrayListCustom<T> implements Cloneable {
     }
 
     public ArrayListCustom<T> filter(Predicate<T> o) {
+        Objects.requireNonNull((o));
         ArrayListCustom<T> newList = new ArrayListCustom<>();
         this.forEach((item) -> {
             if (o.test(item)) {
@@ -130,6 +130,21 @@ public class ArrayListCustom<T> implements Cloneable {
             }
         });
         return newList;
+    }
+
+    //hh
+    private class ArrayListItr<T> implements Iterator<T> {
+        int cursor = 0;
+
+        @Override
+        public boolean hasNext() {
+            return cursor < ArrayListCustom.this.size;
+        }
+
+        @Override
+        public T next() {
+            return (T) ArrayListCustom.this.arr[cursor++];
+        }
     }
 
     public Object[] toArray() {
