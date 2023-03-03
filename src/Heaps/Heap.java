@@ -2,8 +2,10 @@ package Heaps;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Iterator;
+import java.util.function.Consumer;
 
-public class Heap<T extends Comparable<T>> {
+public class Heap<T extends Comparable<T>> implements Iterable<T> {
 
     private ArrayList<T> list = new ArrayList<>();
     private int index;
@@ -97,6 +99,14 @@ public class Heap<T extends Comparable<T>> {
         return index == 0;
     }
 
+    public Object[] toArray() {
+        Object[] arr = new Object[size()];
+        for (int i = 1; i < size(); i++) {
+            arr[i - 1] = list.get(i);
+        }
+        return arr;
+    }
+
     @Override
     public String toString() {
         StringBuilder ans = new StringBuilder("[");
@@ -107,5 +117,31 @@ public class Heap<T extends Comparable<T>> {
         }
         ans.append(list.get(i));
         return ans.append("]").toString();
+    }
+
+    @Override
+    public void forEach(Consumer<? super T> c) {
+        for (int i = 1; i < size(); i++) {
+            c.accept(list.get(i));
+        }
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new HeapItr();
+    }
+
+    private class HeapItr implements Iterator<T> {
+        int cursor = 1;
+
+        @Override
+        public boolean hasNext() {
+            return cursor < Heap.this.size();
+        }
+
+        @Override
+        public T next() {
+            return Heap.this.list.get(cursor++);
+        }
     }
 }
