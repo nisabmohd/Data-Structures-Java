@@ -2,9 +2,10 @@ package Lists;
 
 import java.util.*;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
-public class ArrayListCustom<T> implements Cloneable,Iterable<T> {
+public class ArrayListCustom<T> implements Cloneable, Iterable<T> {
 
     private final int DEFAULT_CAPACITY = 7;
     private int size = 0;
@@ -121,12 +122,6 @@ public class ArrayListCustom<T> implements Cloneable,Iterable<T> {
         }
     }
 
-    public ArrayListCustom<T> filter(Predicate<T> o) {
-        Objects.requireNonNull((o));
-        ArrayListCustom<T> newList = new ArrayListCustom<>();
-        this.forEach(o::test);
-        return newList;
-    }
 
     @Override
     public Iterator<T> iterator() {
@@ -153,6 +148,101 @@ public class ArrayListCustom<T> implements Cloneable,Iterable<T> {
             ret[i] = arr[i];
         }
         return ret;
+    }
+
+
+    // Stream API methods default support in this Arraylist
+    public ArrayListCustom<T> filter(Predicate<T> o) {
+        Objects.requireNonNull((o));
+        ArrayListCustom<T> newList = new ArrayListCustom<>();
+        this.forEach(item -> {
+            if (o.test(item)) newList.add(item);
+        });
+        return newList;
+    }
+
+    public <R> ArrayListCustom<R> map(Function<T, R> o) {
+        Objects.requireNonNull((o));
+        ArrayListCustom<R> newList = new ArrayListCustom<>();
+        this.forEach(item -> {
+            newList.add(o.apply(item));
+        });
+        return newList;
+    }
+
+    public T findFirst(Predicate<T> o) {
+        Objects.requireNonNull(o);
+        for (Object item : this.arr) {
+            T t = (T) item;
+            if (o.test(t)) return t;
+        }
+        return null;
+    }
+
+    public boolean allMatch(Predicate<T> o) {
+        Objects.requireNonNull(o);
+        for (Object item : this.arr) {
+            T t = (T) item;
+            if (!o.test(t)) return false;
+        }
+        return true;
+    }
+
+    public boolean anyMatch(Predicate<T> o) {
+        Objects.requireNonNull(o);
+        for (Object item : this.arr) {
+            T t = (T) item;
+            if (o.test(t)) return true;
+        }
+        return false;
+    }
+
+    public int findFirstIndex(Predicate<T> o) {
+        Objects.requireNonNull(o);
+        int i = 0;
+        for (Object item : this.arr) {
+            T t = (T) item;
+            if (o.test(t)) return i;
+            i++;
+        }
+        return -1;
+    }
+
+    public int count() {
+        return size();
+    }
+
+    public T max(Comparator<? super T> comparator) {
+        Objects.requireNonNull(comparator);
+        if (arr.length == 0) return null;
+        T maxValue = (T) arr[0];
+        for (Object val : arr) {
+            T item = (T) val;
+            int compareValue = comparator.compare(item, maxValue);
+            if (compareValue > 0) maxValue = item;
+        }
+        return maxValue;
+    }
+
+    public T min(Comparator<? super T> comparator) {
+        Objects.requireNonNull(comparator);
+        if (arr.length == 0) return null;
+        T minValue = (T) arr[0];
+        for (Object val : arr) {
+            T item = (T) val;
+            int compareValue = comparator.compare(item, minValue);
+            if (compareValue < 0) minValue = item;
+        }
+        return minValue;
+    }
+
+    public boolean noneMatch(Predicate<T> p) {
+        Objects.requireNonNull(p);
+        for (Object val : arr) {
+            T item = (T) val;
+            if (p.test(item)) return false;
+        }
+        return true;
     }
 
 }
