@@ -1,9 +1,11 @@
 package Sets;
 
 import java.util.*;
+import java.util.function.Consumer;
+
 import Maps.HashMapCustom;
 
-public class HashSetCustom<E> {
+public class HashSetCustom<E> implements Iterable<E> {
 
     public HashSetCustom() {
     }
@@ -36,4 +38,29 @@ public class HashSetCustom<E> {
         return Arrays.toString(map.toKeyArray());
     }
 
+    public void forEach(Consumer<? super E> o) {
+        map.forEach((k, v) -> {
+            o.accept(k);
+        });
+    }
+
+    @Override
+    public Iterator<E> iterator() {
+        return new HashSetItr();
+    }
+
+    private class HashSetItr implements Iterator<E> {
+        private Object[] arr = map.toKeyArray();
+        int cursor = 0;
+
+        @Override
+        public boolean hasNext() {
+            return cursor < arr.length;
+        }
+
+        @Override
+        public E next() {
+            return (E) arr[cursor++];
+        }
+    }
 }
