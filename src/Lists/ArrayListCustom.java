@@ -172,7 +172,7 @@ public class ArrayListCustom<T> implements Cloneable, Iterable<T> {
 
     public T findFirst(Predicate<T> o) {
         Objects.requireNonNull(o);
-        for (Object item : this.arr) {
+        for (Object item : this.toArray()) {
             T t = (T) item;
             if (o.test(t)) return t;
         }
@@ -181,7 +181,7 @@ public class ArrayListCustom<T> implements Cloneable, Iterable<T> {
 
     public boolean allMatch(Predicate<T> o) {
         Objects.requireNonNull(o);
-        for (Object item : this.arr) {
+        for (Object item : this.toArray()) {
             T t = (T) item;
             if (!o.test(t)) return false;
         }
@@ -190,7 +190,7 @@ public class ArrayListCustom<T> implements Cloneable, Iterable<T> {
 
     public boolean anyMatch(Predicate<T> o) {
         Objects.requireNonNull(o);
-        for (Object item : this.arr) {
+        for (Object item : this.toArray()) {
             T t = (T) item;
             if (o.test(t)) return true;
         }
@@ -200,7 +200,7 @@ public class ArrayListCustom<T> implements Cloneable, Iterable<T> {
     public int findFirstIndex(Predicate<T> o) {
         Objects.requireNonNull(o);
         int i = 0;
-        for (Object item : this.arr) {
+        for (Object item : this.toArray()) {
             T t = (T) item;
             if (o.test(t)) return i;
             i++;
@@ -216,7 +216,7 @@ public class ArrayListCustom<T> implements Cloneable, Iterable<T> {
         Objects.requireNonNull(comparator);
         if (arr.length == 0) return null;
         T maxValue = (T) arr[0];
-        for (Object val : arr) {
+        for (Object val : toArray()) {
             T item = (T) val;
             int compareValue = comparator.compare(item, maxValue);
             if (compareValue > 0) maxValue = item;
@@ -228,7 +228,7 @@ public class ArrayListCustom<T> implements Cloneable, Iterable<T> {
         Objects.requireNonNull(comparator);
         if (arr.length == 0) return null;
         T minValue = (T) arr[0];
-        for (Object val : arr) {
+        for (Object val : toArray()) {
             T item = (T) val;
             int compareValue = comparator.compare(item, minValue);
             if (compareValue < 0) minValue = item;
@@ -238,7 +238,7 @@ public class ArrayListCustom<T> implements Cloneable, Iterable<T> {
 
     public boolean noneMatch(Predicate<T> p) {
         Objects.requireNonNull(p);
-        for (Object val : arr) {
+        for (Object val : toArray()) {
             T item = (T) val;
             if (p.test(item)) return false;
         }
