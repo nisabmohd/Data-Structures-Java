@@ -117,8 +117,8 @@ public class ArrayListCustom<T> implements Cloneable, Iterable<T> {
     // forEach method takes Consumer<T>
     public void forEach(Consumer<? super T> o) {
         Objects.requireNonNull(o);
-        for (int i = 0; i < size; i++) {
-            o.accept((T) arr[i]);
+        for(T item: this){
+            o.accept(item);
         }
     }
 
