@@ -27,6 +27,14 @@ public interface BTree {
             return this.val.compareTo(o);
         }
 
+        @Override
+        public String toString() {
+            return "TreeNode{" +
+                    "val=" + val +
+                    ", left=" + left +
+                    ", right=" + right +
+                    '}';
+        }
     }
 
     public List<Object> inOrder(TreeNode node);
@@ -43,7 +51,7 @@ public interface BTree {
 
     public List<Object> topView(TreeNode node);
 
-    public List<Object> botttomView(TreeNode node);
+    public List<Object> bottomView(TreeNode node);
 
     public int height(TreeNode node);
 

@@ -181,8 +181,8 @@ public class AVL<T extends Comparable<T>> extends BinarySearchTree<T> {
     }
 
     @Override
-    public List<Object> botttomView() {
-        return super.botttomView(root);
+    public List<Object> bottomView() {
+        return super.bottomView(root);
     }
 
     @Override

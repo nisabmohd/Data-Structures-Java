@@ -127,8 +127,8 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree {
         return super.topView(root);
     }
 
-    public List<Object> botttomView() {
-        return super.botttomView(root);
+    public List<Object> bottomView() {
+        return super.bottomView(root);
     }
 
     public int height() {

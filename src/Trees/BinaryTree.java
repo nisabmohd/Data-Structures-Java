@@ -141,7 +141,7 @@ public class BinaryTree implements BTree {
     }
 
     @Override
-    public List<Object> botttomView(TreeNode node) {
+    public List<Object> bottomView(TreeNode node) {
         List<Object> list = new ArrayList<>();
         Map<Integer, Object> map = new TreeMap<>();
         if (node == null) {
