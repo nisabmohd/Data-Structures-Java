@@ -23,6 +23,9 @@ I have made this GitHub repository containing all the internal collection framew
 </tr> 
  <td>3.4</td>  <td><a href="https://github.com/nisabmohd/Data-Structures/blob/master/src/Trees/AVL.java">AVL Tree</a></td> 
 </tr>
+<tr>
+ <td>3.5</td> <td><a href="https://github.com/nisabmohd/Data-Structures-Java/blob/master/src/Trees/CompleteBinaryTree.java">Complete Binary Tree</a></td>
+</tr>
  </tbody>  </table>   </td><td><a href="https://github.com/nisabmohd/Data-Structures/blob/master/src/Trees/BTree.java">BTree</a></td> </tr>
 
 <tr>  <td>4</td>  <td><a href="https://github.com/nisabmohd/DS-Implementations/tree/master/src/Maps">Maps</a></td><td>
